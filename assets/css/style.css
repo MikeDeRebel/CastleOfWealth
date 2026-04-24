@@ -101,22 +101,32 @@ main {
   padding: 1.25rem 0 2.25rem;
 }
 
-.risk-banner {
-  border-bottom: 1px solid rgba(255, 179, 102, 0.3);
-  background: linear-gradient(180deg, rgba(255, 122, 64, 0.24), rgba(255, 122, 64, 0.14));
+.banner-stack .container {
+  padding-top: 0.8rem;
+  display: grid;
+  gap: 0.55rem;
 }
 
-.risk-banner .container {
-  padding: 0.72rem 0;
+.alert-banner {
+  border: 1px solid rgba(255, 138, 172, 0.45);
+  background: linear-gradient(170deg, rgba(97, 30, 63, 0.62), rgba(52, 23, 76, 0.56));
+  border-radius: 12px;
+  padding: 0.72rem 0.95rem;
+  color: #ffd9e3;
+  font-size: clamp(0.88rem, 2.6vw, 0.98rem);
+  line-height: 1.45;
+  font-weight: 640;
 }
 
-.risk-banner span {
-  display: block;
-  text-align: center;
-  color: #ffe4c2;
-  font-size: clamp(0.9rem, 2.5vw, 1rem);
-  line-height: 1.4;
-  font-weight: 650;
+.alert-banner-risk {
+  box-shadow: 0 4px 16px rgba(210, 70, 128, 0.18);
+}
+
+.alert-banner-referral {
+  border-color: rgba(212, 154, 255, 0.42);
+  background: linear-gradient(170deg, rgba(67, 35, 88, 0.5), rgba(29, 30, 59, 0.45));
+  color: #e9dfff;
+  font-weight: 580;
 }
 
 section {
@@ -165,14 +175,6 @@ section {
 }
 
 .warning {
-  border: 1px solid rgba(255, 122, 147, 0.5);
-  background: rgba(255, 122, 147, 0.1);
-  border-radius: 12px;
-  padding: 0.8rem 1rem;
-  color: #ffd8e2;
-}
-
-.risk-callout {
   border: 1px solid rgba(255, 122, 147, 0.5);
   background: rgba(255, 122, 147, 0.1);
   border-radius: 12px;
