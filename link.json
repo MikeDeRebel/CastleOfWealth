@@ -1,0 +1,118 @@
+[
+  {
+    "name": "Apex",
+    "url": "https://omni.apex.exchange/referral?referralCode=KIII9ERI",
+    "category": "DEX",
+    "subCategory": "Perps",
+    "description": "DEX powered by Bybit",
+    "referral": true,
+    "tags": ["bybit-ecosystem"]
+  },
+  {
+    "name": "Avantis",
+    "url": "https://www.avantisfi.com/referral?code=mikederebel",
+    "category": "DEX",
+    "subCategory": "Perps",
+    "description": "DEX backed by Coinbase",
+    "referral": true
+  },
+  {
+    "name": "Aster",
+    "url": "https://www.asterdex.com/en/referral/HKRsYw",
+    "category": "DEX",
+    "subCategory": "Perps",
+    "description": "DEX by Binance, 5% rebate",
+    "referral": true,
+    "highlight": true
+  },
+  {
+    "name": "Binance",
+    "url": "https://www.binance.com/?ref=11550618",
+    "category": "CEX",
+    "subCategory": "Trading",
+    "description": "Global centralized exchange",
+    "referral": true
+  },
+  {
+    "name": "Binance Web3",
+    "url": "https://web3.binance.com/referral?ref=D201T8E2",
+    "category": "Wallet",
+    "subCategory": "Web3",
+    "description": "Binance Web3 ecosystem",
+    "referral": true
+  },
+  {
+    "name": "Bitvavo",
+    "url": "https://bitvavo.com/?a=E2E3EE23DE",
+    "category": "CEX",
+    "subCategory": "Europe",
+    "description": "EU exchange with bonus (10k € campaign)",
+    "referral": true,
+    "region": "EU"
+  },
+  {
+    "name": "Bybit",
+    "url": "https://www.bybit.com/invite?ref=QEGWAQ",
+    "category": "CEX",
+    "subCategory": "Perps",
+    "description": "Main leveraged trading exchange",
+    "referral": true,
+    "highlight": true
+  },
+  {
+    "name": "Coinbase",
+    "url": "https://www.coinbase.com/join/58b559042c1f16105229ae9f",
+    "category": "CEX",
+    "subCategory": "Beginner",
+    "description": "Entry-level exchange",
+    "referral": true
+  },
+  {
+    "name": "Drift",
+    "url": "http://app.drift.trade/ref/mikederebel",
+    "category": "DEX",
+    "subCategory": "Solana",
+    "description": "Perps + USDC yield",
+    "referral": true
+  },
+  {
+    "name": "Helix",
+    "url": "https://helixapp.com/ref/MIKEDEREBEL",
+    "category": "DEX",
+    "subCategory": "Injective",
+    "description": "Perps, spot, tradfi assets",
+    "referral": true
+  },
+  {
+    "name": "Hyperliquid",
+    "url": "https://app.hyperliquid.xyz/join/MIKEDEREBEL",
+    "category": "DEX",
+    "subCategory": "Perps",
+    "description": "Onchain perps, 4% fee discount",
+    "referral": true,
+    "highlight": true
+  },
+  {
+    "name": "TradingView",
+    "url": "https://www.tradingview.com/?aff_id=161532&aff_sub=mikederebel",
+    "category": "Tools",
+    "subCategory": "Charting",
+    "description": "Charting + analysis platform",
+    "referral": true
+  },
+  {
+    "name": "Eris Protocol",
+    "url": "https://www.erisprotocol.com/terra/liquidity-hub?tab=liquidity",
+    "category": "DeFi",
+    "subCategory": "Liquidity",
+    "description": "Incentivized liquidity pools on Terra"
+  },
+  {
+    "name": "Jupiter",
+    "url": "https://jup.ag/?ref=q4wxrxfxrc60",
+    "category": "DEX",
+    "subCategory": "Aggregator",
+    "description": "Solana aggregator + lending",
+    "referral": true
+  }
+]
