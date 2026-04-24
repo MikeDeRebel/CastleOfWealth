@@ -101,6 +101,24 @@ main {
   padding: 1.25rem 0 2.25rem;
 }
 
+.risk-banner {
+  border-bottom: 1px solid rgba(255, 179, 102, 0.3);
+  background: linear-gradient(180deg, rgba(255, 122, 64, 0.24), rgba(255, 122, 64, 0.14));
+}
+
+.risk-banner .container {
+  padding: 0.72rem 0;
+}
+
+.risk-banner span {
+  display: block;
+  text-align: center;
+  color: #ffe4c2;
+  font-size: clamp(0.9rem, 2.5vw, 1rem);
+  line-height: 1.4;
+  font-weight: 650;
+}
+
 section {
   margin: 1.25rem 0;
 }
@@ -147,6 +165,14 @@ section {
 }
 
 .warning {
+  border: 1px solid rgba(255, 122, 147, 0.5);
+  background: rgba(255, 122, 147, 0.1);
+  border-radius: 12px;
+  padding: 0.8rem 1rem;
+  color: #ffd8e2;
+}
+
+.risk-callout {
   border: 1px solid rgba(255, 122, 147, 0.5);
   background: rgba(255, 122, 147, 0.1);
   border-radius: 12px;
