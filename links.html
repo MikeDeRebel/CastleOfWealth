@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Castle Of Wealth | Links Hub</title>
+    <meta name="description" content="Full Castle Of Wealth crypto links hub with filterable categories." />
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body>
+    <div class="site-shell">
+      <header>
+        <div class="container nav-wrap">
+          <div class="brand">
+            Castle Of Wealth
+            <small>Links hub by MikeDeRebel • www.derebel.be</small>
+          </div>
+          <nav aria-label="Main navigation">
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="links.html" class="active">Links</a></li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+
+      <main>
+        <div class="container" data-links-root data-source="data/links.json">
+          <section class="warning" role="status" aria-live="polite">
+            Some links may include referral codes. Crypto is high risk. Do your own research.
+          </section>
+
+          <section>
+            <div class="section-head">
+              <h1>Full Links Hub</h1>
+            </div>
+            <p>
+              Filter by lane and open trusted routes. External links always open in a new tab for safer navigation.
+            </p>
+            <div class="filters" data-filters></div>
+          </section>
+
+          <section>
+            <div class="grid cards-3" data-links-grid>
+              <div class="empty-state">Loading platform links…</div>
+            </div>
+          </section>
+        </div>
+      </main>
+
+      <footer>
+        <div class="container">
+          <div>Some links may include referral codes. Using them supports Castle Of Wealth.</div>
+          <div class="risk">⚠️ Virtual currencies, real risks. The only guarantee in crypto is risk.</div>
+        </div>
+      </footer>
+    </div>
+
+    <script src="assets/js/main.js" defer></script>
+  </body>
+</html>
