@@ -317,6 +317,136 @@ section {
   padding: 1.2rem;
 }
 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.course-intro h1 {
+  margin-top: 0;
+  margin-bottom: 0.35rem;
+}
+
+.course-intro p {
+  margin-top: 0;
+}
+
+.course-viewer {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.course-progress {
+  margin: 0;
+  font-weight: 650;
+  color: var(--brand-2);
+}
+
+.course-media-wrap {
+  margin: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #090c15;
+  overflow: hidden;
+}
+
+.course-media {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.course-media-wrap figcaption {
+  padding: 0.95rem;
+}
+
+.course-media-wrap h3 {
+  margin: 0 0 0.3rem;
+}
+
+.course-media-wrap p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.course-controls .button {
+  min-width: 7.2rem;
+}
+
+.quiz h2 {
+  margin-top: 0;
+}
+
+.quiz-question {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: rgba(26, 33, 53, 0.5);
+  padding: 0.85rem;
+  margin-bottom: 0.7rem;
+}
+
+.quiz-question legend {
+  font-weight: 650;
+  margin-bottom: 0.5rem;
+}
+
+.quiz-options {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.quiz-options label {
+  display: flex;
+  gap: 0.45rem;
+  align-items: flex-start;
+}
+
+.quiz-feedback {
+  margin-top: 0.55rem;
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+
+.quiz-feedback.correct {
+  color: var(--success);
+}
+
+.quiz-feedback.incorrect {
+  color: var(--danger);
+}
+
+.quiz-result {
+  margin-top: 0.85rem;
+  padding: 0.85rem;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: rgba(124, 92, 255, 0.12);
+  font-weight: 650;
+}
+
+.course-next-cta {
+  margin-top: 1rem;
+}
+
+.button.disabled,
+.button[aria-disabled='true'] {
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 footer {
   border-top: 1px solid var(--line);
   padding: 1.2rem 0 1.8rem;
@@ -348,5 +478,9 @@ footer .risk {
 
   .cards-4 {
     grid-template-columns: repeat(4, 1fr);
+  }
+
+  .course-media-wrap figcaption {
+    padding: 1.1rem 1.2rem 1.2rem;
   }
 }
