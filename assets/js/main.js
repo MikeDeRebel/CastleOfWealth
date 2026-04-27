@@ -38,6 +38,11 @@
   const cardTemplate = (item) => {
     const risk = item.risk || 'High';
     const region = item.region || 'Global';
+    const cta = item.cta || `Visit ${item.name}`;
+    const isInternal = typeof item.url === 'string' && !/^https?:\/\//i.test(item.url);
+    const linkAttrs = isInternal
+      ? ''
+      : ' target="_blank" rel="noopener noreferrer"';
 
     return `
       <article class="card link-card">
@@ -54,7 +59,7 @@
           <span class="badge">Risk: ${risk}</span>
         </div>
         <p>
-          <a class="button" href="${item.url}" target="_blank" rel="noopener noreferrer">Visit ${item.name}</a>
+          <a class="button" href="${item.url}"${linkAttrs}>${cta}</a>
         </p>
       </article>
     `;
