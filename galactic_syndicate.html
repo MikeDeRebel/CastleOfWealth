@@ -1,0 +1,1016 @@
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Galactic Syndicate</title>
+  <style>
+    .cta-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 6px 0 10px;
+    }
+
+    .cta-btn {
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 800;
+      text-decoration: none;
+      transition: all 0.15s ease;
+    }
+
+    .cta-btn.primary {
+      background: rgba(255,106,26,0.16);
+      border: 1px solid rgba(255,106,26,0.5);
+      color: var(--orange);
+      box-shadow: 0 0 12px rgba(255,106,26,0.18);
+    }
+
+    .cta-btn.secondary {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: rgba(255,255,255,0.85);
+    }
+
+    .cta-btn:hover { transform: translateY(-1px); }
+
+    .cta-arrow,
+    .cta-or {
+      color: rgba(255,255,255,0.5);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .treasury-cta {
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.65);
+      align-items: center;
+    }
+
+    .treasury-cta a {
+      color: var(--orange);
+      text-decoration: none;
+      font-weight: 800;
+    }
+
+    .distribution-block {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 14px;
+    }
+
+    .distribution-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .distribution-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    .distribution-subtitle {
+      margin-top: 4px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .distribution-value {
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--orange);
+    }
+
+    .stacked-bar {
+      display: flex;
+      width: 100%;
+      height: 12px;
+      border-radius: 999px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.08);
+    }
+
+    .stacked-synning {
+      background: linear-gradient(90deg, #ff6a1a, #ff9248);
+      border-right: 1px solid rgba(0,0,0,0.4);
+    }
+
+    .stacked-single { background: linear-gradient(90deg, #8f45d8, #b15cff); }
+
+    .distribution-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 10px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.58);
+      font-weight: 700;
+    }
+
+    .dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      margin-right: 5px;
+    }
+
+    .dot.orange { background: var(--orange); }
+    .dot.purple { background: #9c4fe0; }
+
+    :root {
+      --bg: #090909;
+      --line: rgba(255,255,255,0.08);
+      --text: #f3f3f3;
+      --muted: #a5a5ab;
+      --orange: #ff6a1a;
+      --green: #87d84f;
+      --red: #ff6d6d;
+      --blue: #53b8ff;
+      --shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top center, rgba(255,106,26,0.08), transparent 30%),
+        radial-gradient(circle at bottom left, rgba(83,184,255,0.06), transparent 28%),
+        linear-gradient(180deg, #101012 0%, #080809 100%);
+      min-height: 100vh;
+    }
+
+    .shell {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 28px 22px 40px;
+    }
+
+    .main-title {
+      margin: 0 0 8px 0;
+      font-size: 56px;
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: 0.2px;
+      color: var(--orange);
+      text-shadow: 0 0 18px rgba(255,106,26,0.18);
+    }
+
+    .timestamp {
+      color: rgba(255,255,255,0.55);
+      font-size: 13px;
+      margin: 0 0 16px;
+      letter-spacing: 0.02em;
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 0 0 18px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
+      color: #d8d8de;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.9px;
+      text-transform: uppercase;
+    }
+
+    .chip.live {
+      color: #fdf4ef;
+      border-color: rgba(255,106,26,0.30);
+      background: rgba(255,106,26,0.10);
+      position: relative;
+    }
+
+    .chip.live::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #00ff88;
+      box-shadow: 0 0 10px rgba(0,255,136,0.7);
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.35); opacity: 0.65; }
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+      margin-bottom: 30px;
+    }
+
+    .hero-panel,
+    .hero-banner {
+      position: relative;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      background: linear-gradient(180deg, rgba(27,27,29,0.96), rgba(16,16,18,0.96));
+    }
+
+    .hero-panel { padding: 22px; }
+    .hero-banner { min-height: 450px; }
+
+    .hero-banner.samurai::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: -10%;
+      bottom: 0;
+      width: 75%;
+      background:
+        linear-gradient(
+          to right,
+          rgba(8,10,14,0.94) 0%,
+          rgba(8,10,14,0.76) 34%,
+          rgba(8,10,14,0.36) 58%,
+          rgba(8,10,14,0.80) 100%
+        ),
+        url('./samurai.jpg') center center / cover no-repeat;
+      opacity: 0.92;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero-banner.samurai::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 76% 40%, rgba(255,106,26,0.12), transparent 38%),
+        radial-gradient(circle at top left, rgba(255,106,0,0.10), transparent 30%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero-banner-inner,
+    .progress-panel {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-banner-inner {
+      padding: 34px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      transform: translateY(12px);
+    }
+
+    .hero-banner-title {
+      font-size: 40px;
+      font-weight: 800;
+      line-height: 0.96;
+      letter-spacing: -0.02em;
+      color: #f4f4f6;
+      margin-bottom: 18px;
+      text-shadow: 0 2px 14px rgba(0,0,0,0.22);
+    }
+
+    .hero-banner-paid {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+      margin-bottom: 22px;
+      line-height: 0.9;
+      flex-wrap: wrap;
+    }
+
+    .hero-banner-paid-number {
+      font-size: 96px;
+      font-weight: 900;
+      color: #f8f5f1;
+      letter-spacing: -0.05em;
+      text-shadow: 0 3px 18px rgba(0,0,0,0.24);
+    }
+
+    .hero-banner-paid-asset {
+      font-size: 58px;
+      font-weight: 900;
+      color: var(--orange);
+      letter-spacing: -0.03em;
+      text-shadow: 0 0 18px rgba(255,106,26,0.20);
+    }
+
+    .hero-banner-lifetime {
+      flex-basis: 100%;
+      margin-top: 10px;
+      margin-left: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .lifetime-arrow { color: var(--orange); opacity: 0.85; }
+    .hero-banner-lifetime strong { color: #ffffff; }
+
+    .lifetime-label {
+      color: rgba(255,255,255,0.42);
+      font-weight: 600;
+    }
+
+    .hero-banner-divider {
+      width: 100%;
+      max-width: 420px;
+      height: 2px;
+      margin: 0 0 24px;
+      background: linear-gradient(to right, rgba(255,106,26,0.55), rgba(255,106,26,0.85), rgba(255,190,120,0.75), rgba(255,106,26,0.25));
+      box-shadow: 0 0 10px rgba(255,106,26,0.20);
+      border-radius: 999px;
+    }
+
+    .hero-banner-stats {
+      display: grid;
+      grid-template-columns: auto 1px auto 1px auto;
+      align-items: center;
+      gap: 5px;
+      width: 100%;
+      max-width: 500px;
+    }
+
+    .hero-banner-stat {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .hero-banner-stat-value {
+      font-size: 26px;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .hero-banner-stat-icon {
+      color: var(--orange);
+      opacity: 0.9;
+      margin-bottom: 6px;
+    }
+
+    .hero-banner-stat-icon svg {
+      display: block;
+      width: 40px;
+      height: 40px;
+    }
+
+    .hero-banner-stat-label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+    }
+
+    .hero-banner-stat-sep {
+      width: 1px;
+      height: 54px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.00), rgba(255,255,255,0.10), rgba(255,255,255,0.00));
+    }
+
+    .wages-story {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .wages-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 14px;
+    }
+
+    .wages-grid .card:first-child {
+      border-color: rgba(255,106,26,0.35);
+      background: linear-gradient(180deg, rgba(40,24,16,0.95), rgba(18,16,14,0.98));
+    }
+
+    .progress-panel { display: grid; gap: 14px; }
+
+    .progress-item {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 14px;
+    }
+
+    .progress-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: var(--target);
+      border-radius: 999px;
+      transform-origin: left center;
+    }
+
+    .progress-fill.orange { background: linear-gradient(90deg, #ff6a1a, #ff9248); }
+    .progress-fill.blue { background: linear-gradient(90deg, #2e8cff, #56c0ff); }
+    .progress-fill.green { background: linear-gradient(90deg, #58d152, #9df26e); }
+    .progress-fill.red { background: linear-gradient(90deg, #ff5f6d, #ff8a80); }
+
+    .progress-fill.anim { animation: growBar 1.2s ease-out both; }
+
+    @keyframes growBar {
+      from { transform: scaleX(0); }
+      to { transform: scaleX(1); }
+    }
+
+    .progress-sub {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .mint-vs-floor-value { font-weight: 800; }
+    .mint-vs-floor-value.red { color: #ff8a80; }
+    .mint-vs-floor-value.green { color: #9df26e; }
+    .mint-vs-floor-value.orange { color: #ffb366; }
+
+    .section-title {
+      font-size: 30px;
+      font-weight: 800;
+      margin: 34px 0 14px;
+      color: #fff;
+    }
+
+    .panel {
+      background: linear-gradient(180deg, rgba(21,21,23,0.94), rgba(12,12,14,0.96));
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+      margin-bottom: 22px;
+    }
+
+    .panel.secondary { opacity: 0.96; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 14px;
+    }
+
+    .market-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1.2fr 1fr 1fr;
+      gap: 14px;
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(30,30,33,0.95), rgba(18,18,20,0.95));
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 18px;
+      padding: 16px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
+      transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255,255,255,0.12);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+    }
+
+    .card.accent {
+      border-color: rgba(255,106,26,0.28);
+      background: linear-gradient(180deg, rgba(34,25,21,0.98), rgba(19,18,20,0.96));
+    }
+
+    .card.primary-market {
+      border-color: rgba(83,184,255,0.16);
+      background: linear-gradient(180deg, rgba(22,28,34,0.96), rgba(17,18,21,0.96));
+    }
+
+    .card-label {
+      margin: 0 0 9px 0;
+      color: rgba(255,255,255,0.55);
+      font-size: 12px;
+      text-transform: uppercase;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    .card-value {
+      font-size: 24px;
+      font-weight: 800;
+      line-height: 1.1;
+    }
+
+    .delta {
+      margin-top: 10px;
+      font-size: 13px;
+      font-weight: 800;
+      opacity: 0.95;
+    }
+
+    .delta.up { color: var(--green); }
+    .delta.down { color: #ff7474; }
+
+    .market-sub {
+      margin-top: 10px;
+      font-size: 13px;
+      font-weight: 800;
+      color: rgba(255,255,255,0.55);
+    }
+
+    .history-table {
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .history-header,
+    .history-row {
+      display: grid;
+      grid-template-columns: 1.1fr 1.1fr 1fr 1fr 0.9fr 0.9fr;
+      padding: 12px 16px;
+      font-size: 13px;
+      align-items: center;
+    }
+
+    .history-header {
+      background: rgba(255,255,255,0.04);
+      text-transform: uppercase;
+      font-weight: 700;
+      color: rgba(255,255,255,0.6);
+    }
+
+    .history-row { border-top: 1px solid rgba(255,255,255,0.05); }
+    .history-row:nth-child(even) { background: rgba(255,255,255,0.02); }
+    .history-row.latest { background: linear-gradient(90deg, rgba(255,106,26,0.08), rgba(255,255,255,0.01)); }
+    .history-row .up { color: var(--green); font-weight: 700; }
+    .history-row .down { color: #ff6d6d; font-weight: 700; }
+
+    a { color: #7fc8ff; text-decoration: none; }
+
+    @media (max-width: 1200px) {
+      .market-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 1100px) {
+      .main-title { font-size: 42px; }
+    }
+
+    @media (max-width: 700px) {
+      .market-grid { grid-template-columns: 1fr; }
+      .hero-banner-inner { padding: 24px 22px; transform: none; }
+      .hero-banner-title { font-size: 32px; }
+      .hero-banner-paid { gap: 10px; }
+      .hero-banner-paid-number { font-size: 64px; }
+      .hero-banner-paid-asset { font-size: 42px; }
+      .hero-banner-lifetime { font-size: 13px; }
+      .hero-banner-stats { grid-template-columns: 1fr; gap: 14px; }
+      .hero-banner-stat-sep { display: none; }
+      .hero-banner-stat-icon svg { width: 28px; height: 28px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <h1 class="main-title">Galactic Syndicate</h1>
+    <div class="timestamp">Last updated: 27 Apr 2026, 23:15</div>
+
+    <div class="chip-row">
+      
+  <div class="chip live">LIVE</div>
+
+  <div class="chip ">Next payout: ~7-10 days ⏳</div>
+
+    </div>
+
+    <div class="hero">
+      <div class="hero-banner samurai">
+        <div class="hero-banner-inner">
+          <div class="hero-banner-title">Wages of Syn #13</div>
+
+          <div class="hero-banner-paid">
+            <span class="hero-banner-paid-number">12.00</span>
+            <span class="hero-banner-paid-asset">SYN</span>
+
+            <div class="hero-banner-lifetime">
+              <span class="lifetime-arrow">↓</span>
+              <strong>502.34 SYN</strong>
+              <span class="lifetime-label">total paid</span>
+            </div>
+          </div>
+
+          <div class="hero-banner-divider"></div>
+
+          <div class="hero-banner-stats">
+            <div class="hero-banner-stat">
+              <div class="hero-banner-stat-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <circle cx="8" cy="8" r="3"/>
+                  <circle cx="16" cy="8" r="3"/>
+                  <path d="M2 20c0-3 3-5 6-5s6 2 6 5"/>
+                </svg>
+              </div>
+              <div class="hero-banner-stat-value">374</div>
+              <div class="hero-banner-stat-label">Recipients</div>
+            </div>
+
+            <div class="hero-banner-stat-sep"></div>
+
+            <div class="hero-banner-stat">
+              <div class="hero-banner-stat-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path d="M3 10h18"/>
+                  <path d="M5 10v8M19 10v8"/>
+                  <path d="M8 10v8M16 10v8"/>
+                  <path d="M12 6l9 4H3l9-4z"/>
+                </svg>
+              </div>
+              <div class="hero-banner-stat-value">$32,065</div>
+              <div class="hero-banner-stat-label">Treasury Value</div>
+            </div>
+
+            <div class="hero-banner-stat-sep"></div>
+
+            <div class="hero-banner-stat">
+              <div class="hero-banner-stat-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <rect x="4" y="4" width="16" height="16" rx="3"/>
+                  <path d="M9 9h6v6H9z"/>
+                </svg>
+              </div>
+              <div class="hero-banner-stat-value">6,716</div>
+              <div class="hero-banner-stat-label">NFTs</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-panel">
+        <div class="wages-story">
+          <div class="wages-grid">
+            <div class="card">
+              <div class="card-label">Last Payout / NFT</div>
+              <div class="card-value">0.0018 SYN</div>
+            </div>
+
+            <div class="card">
+              <div class="card-label">Total Paid / NFT</div>
+              <div class="card-value">0.0709 SYN</div>
+            </div>
+
+            <div class="card">
+              <div class="card-label">Total Cycles</div>
+              <div class="card-value">13</div>
+            </div>
+          </div>
+
+          
+  
+  <div class="distribution-block">
+    <div class="distribution-head">
+      <div>
+        <div class="distribution-title">Earning NFTs</div>
+        <div class="distribution-subtitle">
+          6,716 of 7,081 NFTs are earning rewards
+        </div>
+      </div>
+      <div class="distribution-value">94.8%</div>
+    </div>
+
+    <div class="stacked-bar">
+      <div class="stacked-synning" style="width:94.84536082474226%"></div>
+      <div class="stacked-single" style="width:5.154639175257742%"></div>
+    </div>
+
+    <div class="distribution-legend">
+      <span><b class="dot orange"></b> SYNNING NFTs: 6,716</span>
+      <span><b class="dot purple"></b> Single NFT holders (non-earning): 365</span>
+    </div>
+  </div>
+
+  <div class="progress-panel">
+    
+    <div class="progress-item best-entry-block">
+      <div class="progress-head">
+        <span>Best Entry</span>
+        <span class="mint-vs-floor-value green">Marketplace is 28.8% cheaper</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill green" style="--target:28.822456514969524%"></div>
+      </div>
+      <div class="progress-sub">
+        Floor: 1.60 bINJ · Mint: 10 SYN ≈ 2.25 bINJ
+      </div>
+    </div>
+  
+    
+  <div class="cta-row">
+    
+    <a class="cta-btn primary" href="https://app.backbonelabs.io/nfts/marketplace/collections/inj1jq4k20s97zy6d66x9mp2xxrftwhkynz64tjegj" target="_blank">Buy Marketplace</a>
+    <span class="cta-or">or</span>
+    <a class="cta-btn secondary" href="https://app.backbonelabs.io/nfts/launchpad/galactic-syndicate" target="_blank">Mint NFT</a>
+    <a class="cta-btn secondary" href="https://skeletonswap.backbonelabs.io/injective/swap?from=bINJ&to=SYN" target="_blank">Get SYN</a>
+  
+  </div>
+
+    
+  <div class="progress-item">
+    <div class="progress-head">
+      <span>Minted Supply</span>
+      <span>7,081 / 10,000</span>
+    </div>
+    <div class="progress-bar">
+      <div class="progress-fill orange anim" style="--target:70.81%"></div>
+    </div>
+    <div class="progress-sub">
+      70.8% minted · 2,919 remaining · 70,810 SYN burned
+    </div>
+  </div>
+
+    
+  <div class="progress-item treasury-growth-block">
+    <div class="progress-head">
+      <span>Treasury Growth</span>
+      <span>$32,065 / $100,000</span>
+    </div>
+    <div class="progress-bar">
+      <div class="progress-fill green anim" style="--target:32.06492%"></div>
+    </div>
+    <div class="progress-sub">
+      9,007 INJ bonded · 32.1% funded
+    </div>
+    <div class="treasury-cta">
+      <a class="cta-btn" href="https://app.backbonelabs.io/liquid-staking/gravedigger/injective-1" target="_blank">Stake INJ</a>
+      <span>→ grow treasury → increase payouts</span>
+    </div>
+  </div>
+
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="section-title">Treasury & Economics</div>
+    <div class="panel secondary">
+      <div class="grid">
+        
+  <div class="card ">
+    <div class="card-label">Treasury INJ</div>
+    <div class="card-value">9,007</div>
+    <div class="delta down">-9</div>
+  </div>
+
+  <div class="card accent">
+    <div class="card-label">Treasury Value</div>
+    <div class="card-value">$32,065</div>
+    <div class="delta down">-$212</div>
+  </div>
+
+  <div class="card ">
+    <div class="card-label">Treasury / NFT</div>
+    <div class="card-value">$4.53</div>
+    <div class="delta down">-$0.03</div>
+  </div>
+
+  <div class="card ">
+    <div class="card-label">SYN Price</div>
+    <div class="card-value">$0.90</div>
+    <div class="delta down">-$0.02</div>
+  </div>
+
+  <div class="card ">
+    <div class="card-label">bINJ Yield</div>
+    <div class="card-value">12.13%</div>
+    <div class="delta up">+0.10</div>
+  </div>
+
+  <div class="card ">
+    <div class="card-label">bINJ Price</div>
+    <div class="card-value">$3.99</div>
+    
+  </div>
+
+  <div class="card ">
+    <div class="card-label">Mint Cost</div>
+    <div class="card-value">10 SYN</div>
+    <div class="market-sub">≈ 2.25 bINJ / $8.97</div>
+  </div>
+
+  <div class="card ">
+    <div class="card-label">SYN / bINJ</div>
+    <div class="card-value">0.225</div>
+    
+  </div>
+
+      </div>
+    </div>
+
+    <div class="section-title">Marketplace (7D)</div>
+    <div class="panel secondary">
+      <div class="market-grid">
+        
+  <div class="card primary-market">
+    <div class="card-label">bINJ 7D Volume</div>
+    <div class="card-value">27.20 bINJ</div>
+    <div class="market-sub">All-time Volume: 1,603 bINJ</div>
+  </div>
+
+  <div class="card ">
+    <div class="card-label">bINJ Floor</div>
+    <div class="card-value">1.60 bINJ</div>
+    
+  </div>
+
+  <div class="card primary-market">
+    <div class="card-label">INJ 7D Volume</div>
+    <div class="card-value">19.14 INJ</div>
+    <div class="market-sub">1Y Volume: 113.98 INJ</div>
+  </div>
+
+  <div class="card ">
+    <div class="card-label">INJ Floor</div>
+    <div class="card-value">8.00 INJ</div>
+    <div class="delta up">+5.60</div>
+  </div>
+
+      </div>
+    </div>
+
+    <div class="history-table">
+      <div class="history-header">
+        <div>Date</div>
+        <div>Cycle</div>
+        <div>Total Paid</div>
+        <div>Per NFT</div>
+        <div>NFTs</div>
+        <div>Wallets</div>
+      </div>
+      
+      <div class="history-row latest">
+        <div>22 Apr 2026</div>
+        <div>Wages #13</div>
+        <div>12.00 SYN</div>
+        <div class="down">0.0018 SYN (-0.0066) ↓</div>
+        <div>6,716</div>
+        <div>374</div>
+      </div>
+    
+      <div class="history-row ">
+        <div>02 Nov 2025</div>
+        <div>Wages #12</div>
+        <div>54.98 SYN</div>
+        <div class="">0.0084 SYN</div>
+        <div>6,540</div>
+        <div>374</div>
+      </div>
+    
+      <div class="history-row ">
+        <div>25 Sept 2025</div>
+        <div>Wages #11</div>
+        <div>27.01 SYN</div>
+        <div class="">0.0042 SYN</div>
+        <div>6,365</div>
+        <div>374</div>
+      </div>
+    
+      <div class="history-row ">
+        <div>14 Sept 2025</div>
+        <div>Wages #10</div>
+        <div>50.97 SYN</div>
+        <div class="">0.0082 SYN</div>
+        <div>6,189</div>
+        <div>373</div>
+      </div>
+    
+      <div class="history-row ">
+        <div>03 Sept 2025</div>
+        <div>Wages #9</div>
+        <div>68.96 SYN</div>
+        <div class="">0.0112 SYN</div>
+        <div>6,164</div>
+        <div>375</div>
+      </div>
+    
+      <div class="history-row ">
+        <div>14 Jul 2025</div>
+        <div>Wages #8</div>
+        <div>23.21 SYN</div>
+        <div class="">0.0038 SYN</div>
+        <div>6,150</div>
+        <div>376</div>
+      </div>
+    
+      <div class="history-row ">
+        <div>30 Jun 2025</div>
+        <div>Wages #7</div>
+        <div>25.71 SYN</div>
+        <div class="">0.0042 SYN</div>
+        <div>6,147</div>
+        <div>376</div>
+      </div>
+    
+      <div class="history-row ">
+        <div>19 Jun 2025</div>
+        <div>Wages #6</div>
+        <div>49.62 SYN</div>
+        <div class="">0.0081 SYN</div>
+        <div>6,141</div>
+        <div>379</div>
+      </div>
+    
+      <div class="history-row ">
+        <div>02 Jun 2025</div>
+        <div>Wages #5</div>
+        <div>24.80 SYN</div>
+        <div class="">0.0041 SYN</div>
+        <div>6,118</div>
+        <div>374</div>
+      </div>
+    
+      <div class="history-row ">
+        <div>22 May 2025</div>
+        <div>Wages #4</div>
+        <div>49.33 SYN</div>
+        <div class="">0.0081 SYN</div>
+        <div>6,106</div>
+        <div>374</div>
+      </div>
+    
+      <div class="history-row ">
+        <div>14 May 2025</div>
+        <div>Wages #3</div>
+        <div>25.49 SYN</div>
+        <div class="">0.0042 SYN</div>
+        <div>6,097</div>
+        <div>375</div>
+      </div>
+    
+      <div class="history-row ">
+        <div>05 May 2025</div>
+        <div>Wages #2</div>
+        <div>31.63 SYN</div>
+        <div class="">0.0052 SYN</div>
+        <div>6,056</div>
+        <div>379</div>
+      </div>
+    
+      <div class="history-row ">
+        <div>29 Apr 2025</div>
+        <div>Wages #1</div>
+        <div>58.63 SYN</div>
+        <div class="">0.0097 SYN</div>
+        <div>6,050</div>
+        <div>378</div>
+      </div>
+    
+    </div>
+  </div>
+</body>
+</html>
