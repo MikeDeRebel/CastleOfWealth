@@ -144,8 +144,9 @@ section {
 .hero-home {
   position: relative;
   overflow: hidden;
-  min-height: clamp(15rem, 48vh, 28rem);
-  background: url("../img/header.png") center / cover no-repeat;
+  min-height: clamp(15rem, 52vh, 34rem);
+  background: url("../img/header.png") center 42% / contain no-repeat;
+  background-color: #0a0d17;
   border-color: rgba(124, 92, 255, 0.45);
   padding: 0;
 }
@@ -165,12 +166,17 @@ section {
   z-index: 1;
 }
 
-.hero-copy {
-  margin-top: 1rem;
+.hero-intro {
+  margin-top: 0.65rem;
+  padding: 0.2rem 0 0.1rem;
 }
 
 .hero-content {
   max-width: min(40rem, 100%);
+}
+
+.hero-content-intro {
+  margin-inline: auto;
 }
 
 .hero h1 {
@@ -352,6 +358,10 @@ footer .risk {
 }
 
 @media (min-width: 920px) {
+  .hero-home {
+    min-height: 36rem;
+  }
+
   .cards-3 {
     grid-template-columns: repeat(3, 1fr);
   }
