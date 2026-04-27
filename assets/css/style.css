@@ -228,6 +228,22 @@ section {
   background: var(--bg-elev);
 }
 
+a.card {
+  text-decoration: none;
+  display: block;
+}
+
+.card-link {
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-link:hover,
+.card-link:focus-visible {
+  border-color: rgba(95, 241, 169, 0.5);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.28);
+}
+
 .card h3,
 .card h2 {
   margin-top: 0;

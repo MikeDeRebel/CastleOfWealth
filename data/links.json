@@ -92,14 +92,15 @@
     "risk": "High"
   },
   {
-    "name": "Galactic Syndicate Archive",
-    "url": "https://www.derebel.be",
+    "name": "Galactic Syndicate",
+    "url": "galactic_syndicate.html",
     "category": "Social",
-    "subCategory": "Archive",
-    "description": "Historical lore hub and social archive lane.",
+    "subCategory": "Rewards",
+    "description": "Live SYN rewards, treasury stats, NFT earning data, and Galactic Syndicate archive access.",
     "referral": false,
     "highlight": true,
-    "region": "Global",
-    "risk": "Low"
+    "region": "Archive",
+    "risk": "Low",
+    "cta": "Open Galactic Syndicate"
   }
 ]
