@@ -148,7 +148,7 @@ section {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  background: url("../img/header.jpeg") center / cover no-repeat;
+  background: url("../img/header.png") center / cover no-repeat;
   border-color: rgba(124, 92, 255, 0.45);
   padding: clamp(1.35rem, 4vw, 2.2rem);
 }
