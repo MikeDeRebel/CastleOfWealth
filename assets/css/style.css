@@ -141,29 +141,19 @@ section {
   box-shadow: var(--shadow);
 }
 
-.hero-home {
-  position: relative;
+.hero-image-wrap {
+  margin: 1.25rem 0 0.65rem;
+  border: 1px solid rgba(124, 92, 255, 0.45);
+  border-radius: var(--radius);
   overflow: hidden;
-  min-height: clamp(15rem, 52vh, 34rem);
-  background: url("../img/header.png") center 42% / contain no-repeat;
-  background-color: #0a0d17;
-  border-color: rgba(124, 92, 255, 0.45);
-  padding: 0;
+  background: #0a0d17;
+  box-shadow: var(--shadow);
 }
 
-.hero-home::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(155deg, rgba(7, 9, 16, 0.15) 0%, rgba(14, 20, 37, 0.1) 55%, rgba(20, 30, 52, 0.18) 100%),
-    radial-gradient(circle at 78% 18%, rgba(124, 92, 255, 0.08), transparent 42%);
-  pointer-events: none;
-}
-
-.hero-home > * {
-  position: relative;
-  z-index: 1;
+.hero-image {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .hero-intro {
@@ -340,12 +330,6 @@ footer .risk {
 }
 
 
-@media (max-width: 639px) {
-  .hero-home {
-    min-height: 13rem;
-    background-position: center 35%;
-  }
-}
 
 @media (min-width: 640px) {
   .cards-2 {
@@ -358,10 +342,6 @@ footer .risk {
 }
 
 @media (min-width: 920px) {
-  .hero-home {
-    min-height: 36rem;
-  }
-
   .cards-3 {
     grid-template-columns: repeat(3, 1fr);
   }
