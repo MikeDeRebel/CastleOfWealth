@@ -44,3 +44,9 @@ The pre-change required-route test failed on the absent Trade page. Separate sou
 This is locally built and tested; the owner approved publication on 2 October 2026. Release proceeds through a GitHub pull request to main and GitHub Pages, followed by deployment and live-page verification. DNS changes, trading actions and private-history imports remain outside scope. External platform availability, regional access, referral terms and archived action endpoints have not been revalidated. Historical figures are snapshots, not live data. Existing private source folders remain intact.
 
 Serve with a static HTTP server for review. Publish only after reviewing the exact changes through the repository's GitHub route. Recovery: retain the original main revision; a release can be reverted through Git history. Never overwrite private source data to roll back the public site.
+
+## Golden castle hero follow-up
+
+The owner approved replacing the geometric CSS fortress with the proposed detailed golden castle artwork. `assets/img/castle-hero-v2.webp` is a 1280 × 853 WebP, 284,494 bytes, derived from one built-in image generation result using the original `header.png` as a style reference. The complete image appears beside the title on desktop and below the copy on mobile. Explicit dimensions reserve layout space; eager/high-priority loading suits the above-the-fold hero.
+
+Only the homepage scene markup and scoped `.castle-hero` styles changed; the ten library cards and historical/course data remain intact. The existing browser regression suite passed. Additional browser checks at 320, 390, 768 and 1280 pixels confirm decoding, preserved source aspect ratio, full-frame containment, intended placement and no document overflow. This follow-up is locally implemented and tested; it has not yet been released to Pages.
