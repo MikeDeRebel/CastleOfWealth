@@ -1,102 +1,113 @@
 (() => {
-  const linksRoot = document.querySelector('[data-links-root]');
-  if (!linksRoot) return;
-
-  const grid = linksRoot.querySelector('[data-links-grid]');
-  const filtersHost = linksRoot.querySelector('[data-filters]');
-  const source = linksRoot.getAttribute('data-source') || 'data/links.json';
-  const supportedCategories = ['All', 'CEX', 'DEX', 'Earn', 'Tools', 'Ecosystems', 'Social'];
-  let activeCategory = 'All';
+  const root = document.querySelector('[data-links-root]');
+  if (!root) return;
+  const grid = root.querySelector('[data-links-grid]');
+  const filters = root.querySelector('[data-filters]');
+  const search = root.querySelector('[data-links-search]');
+  const status = root.querySelector('[data-links-status]');
+  const categories = ['All', 'CEX', 'DEX', 'Earn', 'Tools', 'Ecosystems', 'Social'];
+  const requested = new URLSearchParams(location.search).get('category');
+  let category = categories.includes(requested) ? requested : 'All';
   let links = [];
 
-  const sanitizeCategory = (category) => {
-    if (!category) return 'Tools';
-    const normalized = category.trim();
-    if (supportedCategories.includes(normalized)) return normalized;
-
-    if (normalized === 'Wallet' || normalized === 'DeFi' || normalized === 'L1/L2') return 'Ecosystems';
-    return 'Tools';
+  const element = (tag, text, className) => {
+    const node = document.createElement(tag);
+    if (text != null) node.textContent = text;
+    if (className) node.className = className;
+    return node;
   };
 
-  const createFilters = () => {
-    filtersHost.innerHTML = '';
-    supportedCategories.forEach((category) => {
-      const btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = `filter-btn${category === activeCategory ? ' active' : ''}`;
-      btn.textContent = category;
-      btn.dataset.filter = category;
-      btn.addEventListener('click', () => {
-        activeCategory = category;
-        createFilters();
-        renderCards();
-      });
-      filtersHost.appendChild(btn);
-    });
-  };
-
-  const cardTemplate = (item) => {
-    const risk = item.risk || 'High';
-    const region = item.region || 'Global';
-    const cta = item.cta || `Visit ${item.name}`;
-    const isInternal = typeof item.url === 'string' && !/^https?:\/\//i.test(item.url);
-    const linkAttrs = isInternal
-      ? ''
-      : ' target="_blank" rel="noopener noreferrer"';
-
-    return `
-      <article class="card link-card">
-        <div class="link-title">
-          <h3>${item.name}</h3>
-          ${item.highlight ? '<span class="badge highlight">Featured</span>' : ''}
-          ${item.referral ? '<span class="badge referral">Referral</span>' : ''}
-        </div>
-        <p>${item.description || ''}</p>
-        <div class="badge-row">
-          <span class="badge">${item.category}</span>
-          <span class="badge">${item.subCategory || 'General'}</span>
-          <span class="badge">${region}</span>
-          <span class="badge">Risk: ${risk}</span>
-        </div>
-        <p>
-          <a class="button" href="${item.url}"${linkAttrs}>${cta}</a>
-        </p>
-      </article>
-    `;
-  };
-
-  const renderCards = () => {
-    const filtered = activeCategory === 'All'
-      ? links
-      : links.filter((item) => item.category === activeCategory);
-
-    if (!filtered.length) {
-      grid.innerHTML = '<div class="empty-state">No platforms found for this filter yet.</div>';
-      return;
+  // JSON is content, never HTML or executable navigation.
+  const safeURL = value => {
+    if (typeof value !== 'string' || !value.trim()) return null;
+    try {
+      const url = new URL(value, document.baseURI);
+      return ['https:', 'http:'].includes(url.protocol) ? url : null;
+    } catch {
+      return null;
     }
-
-    grid.innerHTML = filtered.map(cardTemplate).join('');
   };
 
-  const normalizeLinks = (data) => data.map((item) => ({
-    ...item,
-    category: sanitizeCategory(item.category),
-    risk: item.risk || 'High'
-  }));
-
-  fetch(source)
-    .then((res) => {
-      if (!res.ok) throw new Error(`Failed to load links: ${res.status}`);
-      return res.json();
-    })
-    .then((data) => {
-      if (!Array.isArray(data)) throw new Error('links.json must be an array');
-      links = normalizeLinks(data);
-      createFilters();
-      renderCards();
-    })
-    .catch((err) => {
-      console.error(err);
-      grid.innerHTML = '<div class="empty-state">Could not load links data. Try again later.</div>';
+  const render = () => {
+    const query = search.value.trim().toLowerCase();
+    const visible = links.filter(item =>
+      (category === 'All' || item.category === category) &&
+      [item.name, item.description, item.subCategory].some(value =>
+        String(value || '').toLowerCase().includes(query)
+      )
+    );
+    grid.replaceChildren();
+    status.textContent = visible.length + ' resources' + (category !== 'All' ? ' in ' + category : '');
+    // Keep the buttons themselves intact so keyboard focus survives filtering.
+    filters.querySelectorAll('button').forEach(button => {
+      const active = button.textContent === category;
+      button.classList.toggle('active', active);
+      button.setAttribute('aria-pressed', String(active));
     });
+
+    for (const item of visible) {
+      const card = element('article', null, 'card link-card');
+      card.append(element('h2', item.name));
+      const meta = element('div', null, 'card-meta');
+      const labels = [item.category, item.subCategory, 'Risk: ' + (item.risk || 'Not specified'),
+        ...(item.referral ? ['Referral'] : [])];
+      for (const label of labels) {
+        if (label) meta.append(element('span', label, 'pill'));
+      }
+      card.append(meta, element('p', item.description || 'Verify details with the original provider.'));
+      const link = element('a', item.cta || 'Open ' + item.name + ' ↗');
+      link.href = item.safeURL.href;
+      if (item.safeURL.origin !== location.origin) {
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+      }
+      card.append(link);
+      grid.append(card);
+    }
+    if (!visible.length) {
+      grid.append(element('p', 'No matching resources. Try another search or category.', 'empty-state'));
+    }
+  };
+
+  for (const name of categories) {
+    const button = element('button', name, 'filter-btn');
+    button.type = 'button';
+    button.addEventListener('click', () => {
+      category = name;
+      const url = new URL(location.href);
+      if (name === 'All') url.searchParams.delete('category');
+      else url.searchParams.set('category', name);
+      history.replaceState(null, '', url);
+      render();
+    });
+    filters.append(button);
+  }
+  search.addEventListener('input', render);
+
+  const load = async () => {
+    status.textContent = 'Loading resources…';
+    grid.replaceChildren(element('p', 'Loading platform links…', 'empty-state'));
+    try {
+      const response = await fetch(root.dataset.source || 'data/links.json');
+      if (!response.ok) throw new Error('Directory unavailable');
+      const data = await response.json();
+      if (!Array.isArray(data)) throw new Error('Invalid directory');
+      links = data.filter(item => item && typeof item.name === 'string').map(item => ({
+        ...item,
+        category: categories.includes(item.category) && item.category !== 'All' ? item.category : 'Tools',
+        safeURL: safeURL(item.url)
+      })).filter(item => item.safeURL);
+      render();
+    } catch {
+      status.textContent = 'Resources could not be loaded.';
+      const box = element('div', null, 'empty-state');
+      box.append(element('p', 'The directory is temporarily unavailable. Try loading it again.'));
+      const retry = element('button', 'Try again', 'button');
+      retry.type = 'button';
+      retry.addEventListener('click', load);
+      box.append(retry);
+      grid.replaceChildren(box);
+    }
+  };
+  load();
 })();
