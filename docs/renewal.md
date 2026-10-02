@@ -41,6 +41,6 @@ The pre-change required-route test failed on the absent Trade page. Separate sou
 
 ## Limits and release
 
-This is locally built and tested, pending owner review and publication approval. No GitHub push, PR, merge, Pages deployment, DNS change, trading action or private-history import is included. External platform availability, regional access, referral terms and archived action endpoints have not been revalidated. Historical figures are snapshots, not live data. Existing private source folders remain intact.
+This is locally built and tested; the owner approved publication on 2 October 2026. Release proceeds through a GitHub pull request to main and GitHub Pages, followed by deployment and live-page verification. DNS changes, trading actions and private-history imports remain outside scope. External platform availability, regional access, referral terms and archived action endpoints have not been revalidated. Historical figures are snapshots, not live data. Existing private source folders remain intact.
 
 Serve with a static HTTP server for review. Publish only after reviewing the exact changes through the repository's GitHub route. Recovery: retain the original main revision; a release can be reverted through Git history. Never overwrite private source data to roll back the public site.
