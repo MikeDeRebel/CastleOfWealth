@@ -93,13 +93,14 @@
   },
   {
     "name": "Galactic Syndicate",
-    "url": "https://mikederebel.github.io/galactic-syndicate/",
+    "url": "galactic_syndicate.html",
     "category": "Social",
-    "subCategory": "Archive",
-    "description": "Historical lore hub and social archive lane.",
+    "subCategory": "Rewards",
+    "description": "Historical SYN rewards, treasury and NFT earning records. Preserved snapshot; figures are not live.",
     "referral": false,
     "highlight": true,
-    "region": "Global",
-    "risk": "Low"
+    "region": "Archive",
+    "risk": "High",
+    "cta": "Open Galactic Syndicate"
   }
 ]

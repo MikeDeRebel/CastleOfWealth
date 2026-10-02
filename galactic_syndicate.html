@@ -2,6 +2,7 @@
 <!doctype html>
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="utf-8" />
   <title>Galactic Syndicate</title>
   <style>
@@ -223,7 +224,7 @@
       50% { transform: scale(1.35); opacity: 0.65; }
     }
 
-    .hero {
+    .legacy-hero {
       display: grid;
       grid-template-columns: 1fr;
       gap: 18px;
@@ -416,7 +417,7 @@
       gap: 14px;
     }
 
-    .wages-grid .card:first-child {
+    .wages-grid .legacy-card:first-child {
       border-color: rgba(255,106,26,0.35);
       background: linear-gradient(180deg, rgba(40,24,16,0.95), rgba(18,16,14,0.98));
     }
@@ -495,7 +496,7 @@
 
     .panel.secondary { opacity: 0.96; }
 
-    .grid {
+    .legacy-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
       gap: 14px;
@@ -507,7 +508,7 @@
       gap: 14px;
     }
 
-    .card {
+    .legacy-card {
       background: linear-gradient(180deg, rgba(30,30,33,0.95), rgba(18,18,20,0.95));
       border: 1px solid rgba(255,255,255,0.06);
       border-radius: 18px;
@@ -516,18 +517,18 @@
       transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
     }
 
-    .card:hover {
+    .legacy-card:hover {
       transform: translateY(-2px);
       border-color: rgba(255,255,255,0.12);
       box-shadow: 0 10px 25px rgba(0,0,0,0.4);
     }
 
-    .card.accent {
+    .legacy-card.accent {
       border-color: rgba(255,106,26,0.28);
       background: linear-gradient(180deg, rgba(34,25,21,0.98), rgba(19,18,20,0.96));
     }
 
-    .card.primary-market {
+    .legacy-card.primary-market {
       border-color: rgba(83,184,255,0.16);
       background: linear-gradient(180deg, rgba(22,28,34,0.96), rgba(17,18,21,0.96));
     }
@@ -615,21 +616,75 @@
       .hero-banner-stat-icon svg { width: 28px; height: 28px; }
     }
   </style>
+<link rel="stylesheet" href="assets/css/style.css">
+<style>body{display:block;padding:0}.dashboard,.dashboard-container{max-width:100%}.cow-history{width:min(1240px,calc(100% - 32px));margin:auto} .history-table{overflow-x:auto}.cow-history .history-row{min-width:620px}</style>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
+<header>
+<div class="wrap nav">
+<a class="brand" href="index.html" aria-label="Castle Of Wealth home">
+<svg class="brand-mark" viewBox="0 0 40 44" aria-hidden="true">
+<path d="M5 5h6v6h6V5h6v6h6V5h6v22L20 40 5 27Z"/>
+<path d="M13 29V18h14v11M20 18v15M5 14h30"/>
+</svg>
+<span class="brand-name">Castle Of Wealth<span class="brand-by">by MikeDeRebel</span>
+</span>
+</a>
+<nav aria-label="Main navigation">
+<ul class="navlinks">
+<li>
+<a href="index.html">Home</a>
+</li>
+<li>
+<a href="links.html">Platforms</a>
+</li>
+<li>
+<a href="guides.html">Learn</a>
+</li>
+<li>
+<a href="archive.html" aria-current="page">History</a>
+</li>
+<li>
+<a href="about.html">About</a>
+</li>
+</ul>
+</nav>
+<details class="mobile-menu">
+<summary aria-label="Open navigation">☰</summary>
+<nav class="mobile-panel" aria-label="Mobile navigation">
+<a href="index.html">Home</a>
+<a href="links.html">Platforms</a>
+<a href="guides.html">Learn</a>
+<a href="archive.html" aria-current="page">History</a>
+<a href="about.html">About</a>
+</nav>
+</details>
+<a class="nav-cta" href="links.html">Enter the library ↗</a>
+</div>
+</header>
+<main id="main">
+<section class="wrap syndicate-context">
+<div class="eyebrow">Historical archive</div>
+<h1>Galactic Syndicate</h1>
+<p>This preserved dashboard is a historical snapshot. Balances, rewards, prices and external action links below are not live or verified as currently available.</p>
+<aside class="risk-note">⚠️ Virtual currencies, real risks. The only guarantee in crypto is risk.</aside>
+<a class="textlink" href="archive.html">← Back to the archive</a>
+</section>
+<div class="cow-history">
   <div class="shell">
     <h1 class="main-title">Galactic Syndicate</h1>
     <div class="timestamp">Last updated: 27 Apr 2026, 23:15</div>
 
     <div class="chip-row">
-      
-  <div class="chip live">LIVE</div>
 
-  <div class="chip ">Next payout: ~7-10 days ⏳</div>
+  <div class="chip">ARCHIVED SNAPSHOT</div>
+
+  <div class="chip ">Historical payout cadence: ~7-10 days</div>
 
     </div>
 
-    <div class="hero">
+    <div class="legacy-hero">
       <div class="hero-banner samurai">
         <div class="hero-banner-inner">
           <div class="hero-banner-title">Wages of Syn #13</div>
@@ -645,7 +700,8 @@
             </div>
           </div>
 
-          <div class="hero-banner-divider"></div>
+          <div class="hero-banner-divider">
+</div>
 
           <div class="hero-banner-stats">
             <div class="hero-banner-stat">
@@ -660,7 +716,8 @@
               <div class="hero-banner-stat-label">Recipients</div>
             </div>
 
-            <div class="hero-banner-stat-sep"></div>
+            <div class="hero-banner-stat-sep">
+</div>
 
             <div class="hero-banner-stat">
               <div class="hero-banner-stat-icon">
@@ -675,7 +732,8 @@
               <div class="hero-banner-stat-label">Treasury Value</div>
             </div>
 
-            <div class="hero-banner-stat-sep"></div>
+            <div class="hero-banner-stat-sep">
+</div>
 
             <div class="hero-banner-stat">
               <div class="hero-banner-stat-icon">
@@ -694,24 +752,24 @@
       <div class="hero-panel">
         <div class="wages-story">
           <div class="wages-grid">
-            <div class="card">
+            <div class="legacy-card">
               <div class="card-label">Last Payout / NFT</div>
               <div class="card-value">0.0018 SYN</div>
             </div>
 
-            <div class="card">
+            <div class="legacy-card">
               <div class="card-label">Total Paid / NFT</div>
               <div class="card-value">0.0709 SYN</div>
             </div>
 
-            <div class="card">
+            <div class="legacy-card">
               <div class="card-label">Total Cycles</div>
               <div class="card-value">13</div>
             </div>
           </div>
 
-          
-  
+
+
   <div class="distribution-block">
     <div class="distribution-head">
       <div>
@@ -724,69 +782,78 @@
     </div>
 
     <div class="stacked-bar">
-      <div class="stacked-synning" style="width:94.84536082474226%"></div>
-      <div class="stacked-single" style="width:5.154639175257742%"></div>
+      <div class="stacked-synning" style="width:94.84536082474226%">
+</div>
+      <div class="stacked-single" style="width:5.154639175257742%">
+</div>
     </div>
 
     <div class="distribution-legend">
-      <span><b class="dot orange"></b> SYNNING NFTs: 6,716</span>
-      <span><b class="dot purple"></b> Single NFT holders (non-earning): 365</span>
+      <span>
+<b class="dot orange">
+</b> SYNNING NFTs: 6,716</span>
+      <span>
+<b class="dot purple">
+</b> Single NFT holders (non-earning): 365</span>
     </div>
   </div>
 
   <div class="progress-panel">
-    
+
     <div class="progress-item best-entry-block">
       <div class="progress-head">
         <span>Best Entry</span>
         <span class="mint-vs-floor-value green">Marketplace is 28.8% cheaper</span>
       </div>
       <div class="progress-bar">
-        <div class="progress-fill green" style="--target:28.822456514969524%"></div>
+        <div class="progress-fill green" style="--target:28.822456514969524%">
+</div>
       </div>
       <div class="progress-sub">
         Floor: 1.60 bINJ · Mint: 10 SYN ≈ 2.25 bINJ
       </div>
     </div>
-  
-    
+
+
   <div class="cta-row">
-    
-    <a class="cta-btn primary" href="https://app.backbonelabs.io/nfts/marketplace/collections/inj1jq4k20s97zy6d66x9mp2xxrftwhkynz64tjegj" target="_blank">Buy Marketplace</a>
+
+    <a class="cta-btn primary" href="https://app.backbonelabs.io/nfts/marketplace/collections/inj1jq4k20s97zy6d66x9mp2xxrftwhkynz64tjegj" target="_blank" rel="noopener noreferrer">Buy Marketplace</a>
     <span class="cta-or">or</span>
-    <a class="cta-btn secondary" href="https://app.backbonelabs.io/nfts/launchpad/galactic-syndicate" target="_blank">Mint NFT</a>
-    <a class="cta-btn secondary" href="https://skeletonswap.backbonelabs.io/injective/swap?from=bINJ&to=SYN" target="_blank">Get SYN</a>
-  
+    <a class="cta-btn secondary" href="https://app.backbonelabs.io/nfts/launchpad/galactic-syndicate" target="_blank" rel="noopener noreferrer">Mint NFT</a>
+    <a class="cta-btn secondary" href="https://skeletonswap.backbonelabs.io/injective/swap?from=bINJ&to=SYN" target="_blank" rel="noopener noreferrer">Get SYN</a>
+
   </div>
 
-    
+
   <div class="progress-item">
     <div class="progress-head">
       <span>Minted Supply</span>
       <span>7,081 / 10,000</span>
     </div>
     <div class="progress-bar">
-      <div class="progress-fill orange anim" style="--target:70.81%"></div>
+      <div class="progress-fill orange anim" style="--target:70.81%">
+</div>
     </div>
     <div class="progress-sub">
       70.8% minted · 2,919 remaining · 70,810 SYN burned
     </div>
   </div>
 
-    
+
   <div class="progress-item treasury-growth-block">
     <div class="progress-head">
       <span>Treasury Growth</span>
       <span>$32,065 / $100,000</span>
     </div>
     <div class="progress-bar">
-      <div class="progress-fill green anim" style="--target:32.06492%"></div>
+      <div class="progress-fill green anim" style="--target:32.06492%">
+</div>
     </div>
     <div class="progress-sub">
       9,007 INJ bonded · 32.1% funded
     </div>
     <div class="treasury-cta">
-      <a class="cta-btn" href="https://app.backbonelabs.io/liquid-staking/gravedigger/injective-1" target="_blank">Stake INJ</a>
+      <a class="cta-btn" href="https://app.backbonelabs.io/liquid-staking/gravedigger/injective-1" target="_blank" rel="noopener noreferrer">Stake INJ</a>
       <span>→ grow treasury → increase payouts</span>
     </div>
   </div>
@@ -799,54 +866,54 @@
 
     <div class="section-title">Treasury & Economics</div>
     <div class="panel secondary">
-      <div class="grid">
-        
-  <div class="card ">
+      <div class="legacy-grid">
+
+  <div class="legacy-card ">
     <div class="card-label">Treasury INJ</div>
     <div class="card-value">9,007</div>
     <div class="delta down">-9</div>
   </div>
 
-  <div class="card accent">
+  <div class="legacy-card accent">
     <div class="card-label">Treasury Value</div>
     <div class="card-value">$32,065</div>
     <div class="delta down">-$212</div>
   </div>
 
-  <div class="card ">
+  <div class="legacy-card ">
     <div class="card-label">Treasury / NFT</div>
     <div class="card-value">$4.53</div>
     <div class="delta down">-$0.03</div>
   </div>
 
-  <div class="card ">
+  <div class="legacy-card ">
     <div class="card-label">SYN Price</div>
     <div class="card-value">$0.90</div>
     <div class="delta down">-$0.02</div>
   </div>
 
-  <div class="card ">
+  <div class="legacy-card ">
     <div class="card-label">bINJ Yield</div>
     <div class="card-value">12.13%</div>
     <div class="delta up">+0.10</div>
   </div>
 
-  <div class="card ">
+  <div class="legacy-card ">
     <div class="card-label">bINJ Price</div>
     <div class="card-value">$3.99</div>
-    
+
   </div>
 
-  <div class="card ">
+  <div class="legacy-card ">
     <div class="card-label">Mint Cost</div>
     <div class="card-value">10 SYN</div>
     <div class="market-sub">≈ 2.25 bINJ / $8.97</div>
   </div>
 
-  <div class="card ">
+  <div class="legacy-card ">
     <div class="card-label">SYN / bINJ</div>
     <div class="card-value">0.225</div>
-    
+
   </div>
 
       </div>
@@ -855,26 +922,26 @@
     <div class="section-title">Marketplace (7D)</div>
     <div class="panel secondary">
       <div class="market-grid">
-        
-  <div class="card primary-market">
+
+  <div class="legacy-card primary-market">
     <div class="card-label">bINJ 7D Volume</div>
     <div class="card-value">27.20 bINJ</div>
     <div class="market-sub">All-time Volume: 1,603 bINJ</div>
   </div>
 
-  <div class="card ">
+  <div class="legacy-card ">
     <div class="card-label">bINJ Floor</div>
     <div class="card-value">1.60 bINJ</div>
-    
+
   </div>
 
-  <div class="card primary-market">
+  <div class="legacy-card primary-market">
     <div class="card-label">INJ 7D Volume</div>
     <div class="card-value">19.14 INJ</div>
     <div class="market-sub">1Y Volume: 113.98 INJ</div>
   </div>
 
-  <div class="card ">
+  <div class="legacy-card ">
     <div class="card-label">INJ Floor</div>
     <div class="card-value">8.00 INJ</div>
     <div class="delta up">+5.60</div>
@@ -892,7 +959,7 @@
         <div>NFTs</div>
         <div>Wallets</div>
       </div>
-      
+
       <div class="history-row latest">
         <div>22 Apr 2026</div>
         <div>Wages #13</div>
@@ -901,7 +968,7 @@
         <div>6,716</div>
         <div>374</div>
       </div>
-    
+
       <div class="history-row ">
         <div>02 Nov 2025</div>
         <div>Wages #12</div>
@@ -910,7 +977,7 @@
         <div>6,540</div>
         <div>374</div>
       </div>
-    
+
       <div class="history-row ">
         <div>25 Sept 2025</div>
         <div>Wages #11</div>
@@ -919,7 +986,7 @@
         <div>6,365</div>
         <div>374</div>
       </div>
-    
+
       <div class="history-row ">
         <div>14 Sept 2025</div>
         <div>Wages #10</div>
@@ -928,7 +995,7 @@
         <div>6,189</div>
         <div>373</div>
       </div>
-    
+
       <div class="history-row ">
         <div>03 Sept 2025</div>
         <div>Wages #9</div>
@@ -937,7 +1004,7 @@
         <div>6,164</div>
         <div>375</div>
       </div>
-    
+
       <div class="history-row ">
         <div>14 Jul 2025</div>
         <div>Wages #8</div>
@@ -946,7 +1013,7 @@
         <div>6,150</div>
         <div>376</div>
       </div>
-    
+
       <div class="history-row ">
         <div>30 Jun 2025</div>
         <div>Wages #7</div>
@@ -955,7 +1022,7 @@
         <div>6,147</div>
         <div>376</div>
       </div>
-    
+
       <div class="history-row ">
         <div>19 Jun 2025</div>
         <div>Wages #6</div>
@@ -964,7 +1031,7 @@
         <div>6,141</div>
         <div>379</div>
       </div>
-    
+
       <div class="history-row ">
         <div>02 Jun 2025</div>
         <div>Wages #5</div>
@@ -973,7 +1040,7 @@
         <div>6,118</div>
         <div>374</div>
       </div>
-    
+
       <div class="history-row ">
         <div>22 May 2025</div>
         <div>Wages #4</div>
@@ -982,7 +1049,7 @@
         <div>6,106</div>
         <div>374</div>
       </div>
-    
+
       <div class="history-row ">
         <div>14 May 2025</div>
         <div>Wages #3</div>
@@ -991,7 +1058,7 @@
         <div>6,097</div>
         <div>375</div>
       </div>
-    
+
       <div class="history-row ">
         <div>05 May 2025</div>
         <div>Wages #2</div>
@@ -1000,7 +1067,7 @@
         <div>6,056</div>
         <div>379</div>
       </div>
-    
+
       <div class="history-row ">
         <div>29 Apr 2025</div>
         <div>Wages #1</div>
@@ -1009,8 +1076,29 @@
         <div>6,050</div>
         <div>378</div>
       </div>
-    
+
     </div>
   </div>
+</div>
+</main>
+<footer>
+<div class="wrap">
+<div class="footer-top">
+<div class="footer-name">Castle Of Wealth</div>
+<div class="footer-links">
+<a href="about.html">About</a>
+<a href="archive.html">History</a>
+<a href="disclaimer.html">Risk &amp; disclosure</a>
+</div>
+</div>
+<div class="footer-bottom">
+<div>
+<p>⚠️ Virtual currencies, real risks. The only guarantee in crypto is risk.</p>
+<p>Some links may include referral codes. Using them supports Castle Of Wealth.</p>
+</div>
+<div>By MikeDeRebel</div>
+</div>
+</div>
+</footer>
 </body>
 </html>

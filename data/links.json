@@ -96,11 +96,11 @@
     "url": "galactic_syndicate.html",
     "category": "Social",
     "subCategory": "Rewards",
-    "description": "Live SYN rewards, treasury stats, NFT earning data, and Galactic Syndicate archive access.",
+    "description": "Historical SYN rewards, treasury and NFT earning records. Preserved snapshot; figures are not live.",
     "referral": false,
     "highlight": true,
     "region": "Archive",
-    "risk": "Low",
+    "risk": "High",
     "cta": "Open Galactic Syndicate"
   }
 ]
