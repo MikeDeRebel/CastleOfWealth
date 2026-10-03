@@ -21,3 +21,8 @@ body{font-size:16px;line-height:1.65}.wrap,.container{width:min(1240px,calc(100%
 .skip{position:fixed;z-index:100}.cow-history .history-header,.cow-history .history-row{min-width:620px}
 html{scroll-padding-top:104px}
 .card-art{height:auto}
+
+/* Approved golden castle hero. Preserve the whole artwork at every viewport. */
+.castle-hero{margin:0;min-width:0;align-self:center;position:relative}
+.castle-hero-image{display:block;width:100%;height:auto;object-fit:contain;border-radius:16px;border:1px solid rgba(217,185,121,.18);box-shadow:0 24px 70px rgba(0,0,0,.25)}
+@media(max-width:600px){.castle-hero{margin-top:12px}.castle-hero-image{border-radius:12px}}
