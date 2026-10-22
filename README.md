@@ -1,6 +1,6 @@
 # Castle Of Wealth
 
-Castle Of Wealth is a static crypto hub built for GitHub Pages and Cloudflare DNS, targeting **www.derebel.be**.
+Castle Of Wealth is a personal field guide to building and protecting lasting wealth and independence, by MikeDeRebel. The static website uses GitHub Pages and Cloudflare DNS at **derebel.be**.
 
 ## Stack
 
@@ -13,7 +13,7 @@ Castle Of Wealth is a static crypto hub built for GitHub Pages and Cloudflare DN
 ## Pages
 
 - `index.html` — homepage with hero, quick access cards, featured platforms, start-here path, archive/social section.
-- `links.html` — filterable links hub rendered dynamically from JSON data.
+- `links.html` — the MDR Playbook: four focus routes, the five-step decision method, an optional local decision card and the original filterable resource library.
 - `trade.html` and `invest.html` — venue, custody and risk context, leading to the appropriate library categories.
 - `guides.html` — course entry and practical decision/recordkeeping checklists.
 - `bitcoin-technical-analysis-course.html` — preserved eight-slide introduction and five-question quiz.
@@ -23,6 +23,8 @@ Castle Of Wealth is a static crypto hub built for GitHub Pages and Cloudflare DN
 - `about.html` and `disclaimer.html` — purpose, author, referrals and risk disclosure.
 
 All pages use `assets/css/style.css`. The original historical dashboard keeps its layout styles, with isolated legacy selectors to prevent shared CSS collisions.
+
+The Playbook additionally uses `assets/css/playbook.css` and `assets/js/playbook.js`. Its principles and process remain readable without JavaScript. Focus links such as `links.html?focus=protect` are shareable; the existing `category` query parameters still filter the directory. See [MDR Playbook notes](docs/mdr-playbook.md) for the decision-card behavior and scope.
 
 ## Data source
 
@@ -61,14 +63,15 @@ Then open:
 
 ## Browser verification
 
-There is no product build or runtime dependency. Development verification uses Node.js, Playwright and an installed Microsoft Edge browser:
+There is no product build or runtime dependency. Development verification uses Node.js, Playwright and Chromium (or an installed Edge browser):
 
 ```powershell
 $env:PLAYWRIGHT_PATH = 'path/to/playwright'
+$env:PLAYWRIGHT_CHANNEL = 'msedge' # Optional; omit to use bundled Chromium.
 node tests/website.cjs
 ```
 
-The test starts and closes its own loopback server. It checks required routes, local links/assets, disclosures, category/search behavior, unsafe URL rejection, load/retry, course navigation/quiz, keyboard navigation, anchor visibility, historical table alignment and desktop/mobile overflow. Optional `QA_DIR` saves screenshots outside the product tree.
+For a separately installed Chromium, set `PLAYWRIGHT_EXECUTABLE_PATH` to its executable instead. The test starts and closes its own loopback server. It checks the MDR focus/history flow, explicit approval and invalidation, optional local persistence, real text downloads, unavailable storage and no-JavaScript guidance. It also checks the existing routes, local links/assets, disclosures, category/search behavior, unsafe URL rejection, load/retry, course navigation/quiz, keyboard navigation, anchor visibility, historical table alignment and responsive overflow. Optional `QA_DIR` saves screenshots outside the product tree.
 
 See [renewal notes](docs/renewal.md) for scope, asset provenance and limitations. Publishing to GitHub Pages is a separate release step.
 
@@ -78,6 +81,4 @@ Every page footer includes:
 
 > ⚠️ Virtual currencies, real risks. The only guarantee in crypto is risk.
 
-`links.html` also includes a visible top warning:
-
-> Some links may include referral codes. Crypto is high risk. Do your own research.
+`links.html` also includes the crypto risk warning at the top and referral disclosure alongside the directory. Existing directory risk labels are explicitly described as original labels, not independent assessments. Provider terms, regional availability and referral endpoints are not newly verified by the Playbook.

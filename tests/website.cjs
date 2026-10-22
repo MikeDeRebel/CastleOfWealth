@@ -3,6 +3,7 @@ const http = require('node:http');
 const fs = require('node:fs');
 const path = require('node:path');
 const { chromium } = require(process.env.PLAYWRIGHT_PATH || 'playwright');
+const verifyMdrPlaybook = require('./mdr-playbook.cjs');
 const root = path.resolve(__dirname, '..');
 const server = http.createServer((req,res) => {
   const file = path.join(root, decodeURIComponent(req.url.split('?')[0] === '/' ? '/index.html' : req.url.split('?')[0]));
@@ -16,7 +17,11 @@ const server = http.createServer((req,res) => {
  const base = `http://127.0.0.1:${server.address().port}`;
  let browser;
  try {
-  browser = await chromium.launch({channel:'msedge',headless:true}); const page = await browser.newPage();
+  const launchOptions = { headless: true, args: ['--no-sandbox'] };
+  if (process.env.PLAYWRIGHT_EXECUTABLE_PATH) launchOptions.executablePath = process.env.PLAYWRIGHT_EXECUTABLE_PATH;
+  else if (process.env.PLAYWRIGHT_CHANNEL) launchOptions.channel = process.env.PLAYWRIGHT_CHANNEL;
+  browser = await chromium.launch(launchOptions); const page = await browser.newPage();
+  await verifyMdrPlaybook(page, base, browser);
   for(const name of ['index','links','trade','invest','guides','archive','about','disclaimer','bitcoin-technical-analysis-course','galactic_syndicate','galactic-syndicate']) {
    const response = await page.goto(`${base}/${name}.html`); assert.equal(response.status(),200,`${name} must be reachable`);
    assert(await page.locator('footer').innerText().then(t=>t.includes('Virtual currencies, real risks.')),`${name} needs visible risk disclosure`);
@@ -34,6 +39,8 @@ const server = http.createServer((req,res) => {
   await page.goto(`${base}/links.html`); await page.locator('[data-links-status]').filter({hasText:'0'}).waitFor(); assert.equal(await page.locator('[data-links-grid] a').count(),0,'Unsafe URLs must not become links');
   await page.unroute('**/data/links.json');
   await page.route('**/data/links.json',r=>r.fulfill({status:503,body:'unavailable'})); await page.reload(); await page.getByRole('button',{name:'Try again'}).waitFor();
+  await page.locator('[data-mdr-focus="research"]').click(); await page.locator('[data-mdr-focus="protect"]').click(); await page.goBack();
+  assert.equal(await page.getByRole('button',{name:'Try again'}).count(),1,'Focus history must preserve a failed directory and its retry action');
   await page.unroute('**/data/links.json'); await page.getByRole('button',{name:'Try again'}).click(); await page.locator('[data-links-grid] .card').first().waitFor();
   await page.goto(`${base}/guides.html#discipline`);await page.emulateMedia({reducedMotion:'reduce'});await page.reload();
   assert(await page.locator('#discipline h2').evaluate(e=>e.getBoundingClientRect().top>=document.querySelector('header').getBoundingClientRect().bottom),'Sticky header must not hide anchor heading');

@@ -6,9 +6,13 @@
   const search = root.querySelector('[data-links-search]');
   const status = root.querySelector('[data-links-status]');
   const categories = ['All', 'CEX', 'DEX', 'Earn', 'Tools', 'Ecosystems', 'Social'];
-  const requested = new URLSearchParams(location.search).get('category');
-  let category = categories.includes(requested) ? requested : 'All';
+  const readCategory = () => {
+    const requested = new URLSearchParams(location.search).get('category');
+    return categories.includes(requested) ? requested : 'All';
+  };
+  let category = readCategory();
   let links = [];
+  let hasLoaded = false;
 
   const element = (tag, text, className) => {
     const node = document.createElement(tag);
@@ -29,6 +33,13 @@
   };
 
   const render = () => {
+    // Filtering/history must not erase the loading or retry state.
+    filters.querySelectorAll('button').forEach(button => {
+      const active = button.textContent === category;
+      button.classList.toggle('active', active);
+      button.setAttribute('aria-pressed', String(active));
+    });
+    if (!hasLoaded) return;
     const query = search.value.trim().toLowerCase();
     const visible = links.filter(item =>
       (category === 'All' || item.category === category) &&
@@ -38,16 +49,9 @@
     );
     grid.replaceChildren();
     status.textContent = visible.length + ' resources' + (category !== 'All' ? ' in ' + category : '');
-    // Keep the buttons themselves intact so keyboard focus survives filtering.
-    filters.querySelectorAll('button').forEach(button => {
-      const active = button.textContent === category;
-      button.classList.toggle('active', active);
-      button.setAttribute('aria-pressed', String(active));
-    });
-
     for (const item of visible) {
       const card = element('article', null, 'card link-card');
-      card.append(element('h2', item.name));
+      card.append(element('h3', item.name));
       const meta = element('div', null, 'card-meta');
       const labels = [item.category, item.subCategory, 'Risk: ' + (item.risk || 'Not specified'),
         ...(item.referral ? ['Referral'] : [])];
@@ -83,8 +87,14 @@
     filters.append(button);
   }
   search.addEventListener('input', render);
+  // The Playbook focus selector creates history entries alongside this filter.
+  window.addEventListener('popstate', () => {
+    category = readCategory();
+    render();
+  });
 
   const load = async () => {
+    hasLoaded = false;
     status.textContent = 'Loading resources…';
     grid.replaceChildren(element('p', 'Loading platform links…', 'empty-state'));
     try {
@@ -97,6 +107,7 @@
         category: categories.includes(item.category) && item.category !== 'All' ? item.category : 'Tools',
         safeURL: safeURL(item.url)
       })).filter(item => item.safeURL);
+      hasLoaded = true;
       render();
     } catch {
       status.textContent = 'Resources could not be loaded.';
@@ -109,5 +120,6 @@
       grid.replaceChildren(box);
     }
   };
+  render();
   load();
 })();
