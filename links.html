@@ -8,6 +8,7 @@
 <title>The MDR Playbook | Castle Of Wealth</title>
 <link rel="stylesheet" href="assets/css/style.css">
 <link rel="stylesheet" href="assets/css/playbook.css">
+<link rel="stylesheet" href="assets/css/mdr-risk-engine.css">
 </head>
 <body class="mdr-page">
 <a class="skip" href="#main">Skip to content</a>
@@ -81,7 +82,8 @@
   <a href="#choose-focus">01 / Your focus</a>
   <a href="#mdr-method">02 / The method</a>
   <a href="#decision-card">03 / Your decision</a>
-  <a href="#resource-library">04 / The resources</a>
+  <a href="#mdr-risk-engine">04 / Risk Engine</a>
+  <a href="#resource-library">05 / The resources</a>
 </nav>
 
 <section class="mdr-foundations" aria-label="The four foundations of Castle Of Wealth">
@@ -164,8 +166,89 @@
   </div>
 </section>
 
+<section id="mdr-risk-engine" class="mdr-section mdr-risk-engine" aria-labelledby="mdr-risk-heading" data-mdr-risk-engine>
+  <div class="mdr-section-heading mdr-risk-intro">
+    <div>
+      <div class="section-kicker">04 / MDR R Engine · Position-risk laboratory</div>
+      <h2 id="mdr-risk-heading">Risk first.<br>Size second.</h2>
+    </div>
+    <p>A stop is a plan, not a guarantee.<br>Calculate the downside before you decide.</p>
+  </div>
+  <div class="mdr-risk-shell">
+    <div class="mdr-risk-form-pane">
+      <div class="mdr-risk-pane-top"><span>MDR / MODEL 001</span><span>NO ORDERS · NO SYNC</span></div>
+      <h3>Define your <em>1R.</em></h3>
+      <p class="mdr-risk-subtitle">Everything here is an assumption you control. No venue fees, market prices or account balances are fetched.</p>
+      <form data-mdr-risk-form hidden novalidate autocomplete="off">
+        <div class="mdr-risk-fields">
+          <div class="mdr-risk-field">
+            <label for="mdr-r-side">Direction</label>
+            <select id="mdr-r-side" name="side"><option value="long">Long · stop ↓</option><option value="short">Short · stop ↑</option></select>
+          </div>
+          <div class="mdr-risk-field">
+            <label for="mdr-r-ccy">Quote currency</label>
+            <select id="mdr-r-ccy" name="currency"><option value="USD">USD</option><option value="USDT">USDT</option><option value="EUR">EUR</option></select>
+          </div>
+          <div class="mdr-risk-field">
+            <label for="mdr-r-equity">Account equity <span>(quote units)</span></label>
+            <input id="mdr-r-equity" name="equity" type="number" inputmode="decimal" placeholder="e.g. 10000" min="0.01" max="1000000000000" step="any" required>
+          </div>
+          <div class="mdr-risk-field">
+            <label for="mdr-r-percent">Risk budget <span>(% of equity)</span></label>
+            <input id="mdr-r-percent" name="riskPercent" type="number" inputmode="decimal" placeholder="e.g. 0.5" min="0.01" max="10" step="any" required>
+          </div>
+          <div class="mdr-risk-field">
+            <label for="mdr-r-entry">Planned entry <span>(quote / unit)</span></label>
+            <input id="mdr-r-entry" name="entry" type="number" inputmode="decimal" placeholder="e.g. 100" min="0.00000001" max="1000000000000" step="any" required>
+          </div>
+          <div class="mdr-risk-field">
+            <label for="mdr-r-stop">Planned stop <span>(quote / unit)</span></label>
+            <input id="mdr-r-stop" name="stop" type="number" inputmode="decimal" placeholder="e.g. 95" min="0.00000001" max="1000000000000" step="any" required>
+          </div>
+          <div class="mdr-risk-field">
+            <label for="mdr-r-open-fee">Entry fee <span>(%)</span></label>
+            <input id="mdr-r-open-fee" name="entryFee" type="number" inputmode="decimal" placeholder="Enter actual rate" min="0" max="5" step="any" required>
+          </div>
+          <div class="mdr-risk-field">
+            <label for="mdr-r-close-fee">Exit fee <span>(%)</span></label>
+            <input id="mdr-r-close-fee" name="exitFee" type="number" inputmode="decimal" placeholder="Enter actual rate" min="0" max="5" step="any" required>
+          </div>
+          <div class="mdr-risk-field">
+            <label for="mdr-r-slip">Adverse slippage buffer <span>(%)</span></label>
+            <input id="mdr-r-slip" name="slippage" type="number" inputmode="decimal" placeholder="Include a buffer" min="0" max="5" step="any" required>
+          </div>
+          <div class="mdr-risk-field">
+            <label for="mdr-r-cap">Maximum notional <span>(× equity)</span></label>
+            <input id="mdr-r-cap" name="maxExposure" type="number" inputmode="decimal" value="1" min="0.1" max="20" step="any" required>
+          </div>
+        </div>
+        <p class="mdr-risk-form-note">Start with <strong>1×</strong> maximum notional (no modeled leverage). Higher caps do not check liquidation, margin requirements or borrowing costs. Every fee and buffer is required, even if the correct value is zero.</p>
+        <div class="mdr-risk-actions"><button type="reset" class="mdr-risk-reset">Reset assumptions ↺</button><a href="#decision-card" class="mdr-risk-record">Record your reasoning <span aria-hidden="true">↗</span></a></div>
+      </form>
+      <noscript><p class="mdr-risk-nojs">This calculator requires JavaScript. Without it, apply the conservative calculation manually: budget = equity × risk%; risk per unit = stop distance + entry fee + exit fee + slippage buffer (each as a price amount). Never assume a stop will fill at its planned price.</p></noscript>
+    </div>
+    <div class="mdr-risk-result-pane">
+      <div class="mdr-risk-report-top"><span>RISK MODEL / OUTPUT</span><span class="mdr-risk-state" data-r-state role="status" aria-live="polite" aria-atomic="true">STAND DOWN</span></div>
+      <p class="mdr-risk-state-description" data-r-message>Enter your equity, planned entry and stop, risk percentage, both fees and a slippage buffer to unlock the model.</p>
+      <div class="mdr-risk-big"><span>MAXIMUM MODEL QUANTITY</span><strong data-r-quantity>—</strong><small>units · always rounded down to 8 decimal places</small></div>
+      <div class="mdr-risk-metrics">
+        <div><span>1R / Risk budget</span><strong data-r-budget>—</strong></div>
+        <div><span>Modeled loss at stop</span><strong data-r-loss>—</strong></div>
+        <div><span>Stop distance</span><strong data-r-distance>—</strong></div>
+        <div><span>Position notional</span><strong data-r-notional>—</strong></div>
+        <div><span>Fees + slip / unit</span><strong data-r-friction>—</strong></div>
+        <div><span>Exposure / equity</span><strong data-r-exposure>—</strong></div>
+      </div>
+      <div class="mdr-risk-capacity"><div><span>Risk budget in use</span><strong data-r-usage>—</strong></div><div class="mdr-risk-bar" aria-hidden="true"><span data-r-bar></span></div></div>
+      <p class="mdr-risk-warning" data-r-warning>⛔ Not a position recommendation. Missing evidence means no decision.</p>
+      <details class="mdr-risk-formula"><summary>How this MDR calculation works</summary><p>1R budget = equity × risk %. Estimated per-unit loss = |entry − stop| + entry × entry-fee % + stop × adverse-slippage % + (stop + adverse-slippage amount) × exit-fee %. Model units = minimum of (1R / loss per unit) and (equity × maximum notional multiple / entry), rounded down to 8 decimal places. This is a planning estimate, not a guaranteed fill or a broker-approved order. It excludes funding, borrow costs, taxes, gaps beyond your buffer and liquidation conditions.</p></details>
+      <p class="mdr-risk-foot">MDR STANDARD / Preparation beats prediction. Human approval and an independent execution check remain mandatory.</p>
+    </div>
+  </div>
+</section>
+
 <section id="resource-library" class="mdr-section mdr-resources" aria-labelledby="resources-heading">
-  <div class="mdr-section-heading"><div><div class="section-kicker">04 / Tools serve the process</div><h2 id="resources-heading">The resource shelf.</h2></div><p>Choose the resource that serves<br>your next deliberate step.</p></div>
+  <div class="mdr-section-heading"><div><div class="section-kicker">05 / Tools serve the process</div><h2 id="resources-heading">The resource shelf.</h2></div><p>Choose the resource that serves<br>your next deliberate step.</p></div>
   <div class="mdr-reading-list">
     <a href="guides.html#discipline"><span>PREPARE</span><h3>The decision checklist</h3><p>Clarify the case, the downside and the record you will keep.</p><span class="mdr-reading-arrow" aria-hidden="true">↗</span></a>
     <a href="bitcoin-technical-analysis-course.html"><span>LEARN</span><h3>Read a chart with context</h3><p>The eight-part BTC analysis introduction and knowledge check.</p><span class="mdr-reading-arrow" aria-hidden="true">↗</span></a>
@@ -211,5 +294,6 @@
 <script src="assets/js/main.js" defer>
 </script>
 <script src="assets/js/playbook.js" defer></script>
+<script src="assets/js/mdr-risk-engine.js" defer></script>
 </body>
 </html>
