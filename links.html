@@ -241,7 +241,7 @@
       </div>
       <div class="mdr-risk-capacity"><div><span>Risk budget in use</span><strong data-r-usage>—</strong></div><div class="mdr-risk-bar" aria-hidden="true"><span data-r-bar></span></div></div>
       <p class="mdr-risk-warning" data-r-warning>⛔ Not a position recommendation. Missing evidence means no decision.</p>
-      <details class="mdr-risk-formula"><summary>How this MDR calculation works</summary><p>1R budget = equity × risk %. Estimated per-unit loss = |entry − stop| + entry × entry-fee % + stop × exit-fee % + stop × adverse-slippage %. Model units = minimum of (1R / loss per unit) and (equity × maximum notional multiple / entry), rounded down to 8 decimal places. This is a planning estimate, not a guaranteed fill or a broker-approved order. It excludes funding, borrow costs, taxes, gaps beyond your buffer and liquidation conditions.</p></details>
+      <details class="mdr-risk-formula"><summary>How this MDR calculation works</summary><p>1R budget = equity × risk %. Estimated per-unit loss = |entry − stop| + entry × entry-fee % + stop × adverse-slippage % + (stop + adverse-slippage amount) × exit-fee %. Model units = minimum of (1R / loss per unit) and (equity × maximum notional multiple / entry), rounded down to 8 decimal places. This is a planning estimate, not a guaranteed fill or a broker-approved order. It excludes funding, borrow costs, taxes, gaps beyond your buffer and liquidation conditions.</p></details>
       <p class="mdr-risk-foot">MDR STANDARD / Preparation beats prediction. Human approval and an independent execution check remain mandatory.</p>
     </div>
   </div>

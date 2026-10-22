@@ -37,9 +37,9 @@ module.exports = async function verifyMdrRiskEngine(page, base, browser) {
     assert.equal(await state.innerText(), 'STAND DOWN', 'Missing fees must not silently default to zero');
     await control('exitFee').fill(filled.exitFee);
     assert.equal(await state.innerText(), 'MODEL CALCULATED');
-    assert.equal(await quantity.innerText(), '18.57010213');
+    assert.equal(await quantity.innerText(), '18.56944694');
     assert.equal(await page.locator('[data-r-budget]').innerText(), '100.00 USD');
-    assert.equal(await page.locator('[data-r-notional]').innerText(), '1,857.01 USD');
+    assert.equal(await page.locator('[data-r-notional]').innerText(), '1,856.94 USD');
     assert.equal(await page.locator('[data-r-exposure]').innerText(), '0.19×');
     const risk = Number((await page.locator('[data-r-loss]').innerText()).split(' ')[0].replaceAll(',', ''));
     assert(risk <= 100, 'Rounded quantity must not spend more than 1R');
@@ -49,7 +49,7 @@ module.exports = async function verifyMdrRiskEngine(page, base, browser) {
     assert.equal(await quantity.innerText(), '—', 'Invalid input must erase stale model');
     await control('side').selectOption('short');
     assert.equal(await state.innerText(), 'MODEL CALCULATED');
-    assert.equal(await quantity.innerText(), '18.46722068', 'Short formula and fees must work');
+    assert.equal(await quantity.innerText(), '18.46650453', 'Short formula and fees must work');
 
     await fill({side:'long',currency:'EUR',equity:'1000',riskPercent:'1',entry:'100',stop:'99.9',entryFee:'0',exitFee:'0',slippage:'0',maxExposure:'1'});
     assert.equal(await quantity.innerText(), '10.00000000', 'Conservative notional cap must bind');

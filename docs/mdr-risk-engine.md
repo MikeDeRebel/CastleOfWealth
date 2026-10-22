@@ -11,7 +11,7 @@ One independent browser-only position-risk calculator inside the existing MDR Pl
 
 ## Conservative fixed-R formula
 1. `1R = equity × (risk % / 100)`, rounded **down** to 12 decimal places.
-2. `loss per unit = |entry − stop| + entry × entry-fee% + stop × exit-fee% + stop × adverse-slippage%`, rounding each fee/buffer component **up** to 12 decimal places.
+2. `loss per unit = |entry − stop| + entry × entry-fee% + stop × adverse-slippage% + (stop + adverse-slippage amount) × exit-fee%`, rounding each fee/buffer component **up** to 12 decimal places. The exit fee is charged on a conservatively higher stop-plus-slippage price, including the fee-on-slippage cross-term.
 3. `units by 1R = floor(1R / loss per unit, 8 decimal places)`.
 4. `units by notional cap = floor(equity × max-notional multiple / entry, 8 decimal places)`.
 5. The **minimum** of those quantities is reported only after separate modeled-loss and notional-budget assertions pass.

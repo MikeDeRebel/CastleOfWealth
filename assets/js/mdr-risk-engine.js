@@ -69,8 +69,11 @@
     // Conservative rounding: budget down; each loss and cost up; quantity down.
     const riskBudget = equity * riskPercent / (100n * SCALE);
     const distance = long ? entry - stop : stop - entry;
+    const adverseSlip = ceil(stop * slippage, 100n * SCALE);
+    // Charge the exit fee on (stop + slippage) for BOTH directions:
+    // this includes fee-on-slippage for shorts and is conservative for longs.
     const friction = ceil(entry * entryFee, 100n * SCALE) +
-      ceil(stop * exitFee, 100n * SCALE) + ceil(stop * slippage, 100n * SCALE);
+      adverseSlip + ceil((stop + adverseSlip) * exitFee, 100n * SCALE);
     const lossPerUnit = distance + friction;
     const maxNotional = equity * maxExposure / SCALE;
     if (riskBudget <= 0n || lossPerUnit <= 0n || entry <= 0n) {
