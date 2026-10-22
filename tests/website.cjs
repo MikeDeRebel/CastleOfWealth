@@ -5,6 +5,7 @@ const path = require('node:path');
 const { chromium } = require(process.env.PLAYWRIGHT_PATH || 'playwright');
 const verifyMdrPlaybook = require('./mdr-playbook.cjs');
 const verifyMdrRiskEngine = require('./mdr-risk-engine.cjs');
+const verifyMdrFalsifier = require('./mdr-falsifier.cjs');
 const verifyMdrEntryGate = require('./mdr-entry-gate.cjs');
 const root = path.resolve(__dirname, '..');
 const server = http.createServer((req,res) => {
@@ -25,6 +26,7 @@ const server = http.createServer((req,res) => {
   browser = await chromium.launch(launchOptions); const page = await browser.newPage();
   await verifyMdrPlaybook(page, base, browser);
   await verifyMdrRiskEngine(page, base, browser);
+  await verifyMdrFalsifier(page, base, browser);
   await verifyMdrEntryGate(page, base, browser);
   for(const name of ['index','links','trade','invest','guides','archive','about','disclaimer','bitcoin-technical-analysis-course','galactic_syndicate','galactic-syndicate']) {
    const response = await page.goto(`${base}/${name}.html`); assert.equal(response.status(),200,`${name} must be reachable`);
