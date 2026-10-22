@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="assets/css/style.css">
 <link rel="stylesheet" href="assets/css/playbook.css">
 <link rel="stylesheet" href="assets/css/mdr-falsifier.css">
+<link rel="stylesheet" href="assets/css/mdr-vault.css">
 <link rel="stylesheet" href="assets/css/mdr-risk-engine.css">
 </head>
 <body class="mdr-page">
@@ -184,6 +185,53 @@
     <p class="mdr-falsifier-privacy">No account connection, cloud save or automated validation. Your notes remain on this device until you export or share them. Never enter passwords, exchange API keys or recovery phrases. The SHA-256 fingerprint detects changes to the text; it is <strong>not</strong> proof of when the data was observed.</p>
   </form>
 </section>
+<section class="mdr-vault" id="mdr-vault" data-mdr-vault aria-labelledby="mdr-vault-heading" hidden>
+  <div class="mdr-vault-story">
+    <div class="section-kicker">MDR WEALTH VAULT / 004</div>
+    <h3 id="mdr-vault-heading">Protect your <em>runway.</em><br>Then consider the upside.</h3>
+    <p>A castle cannot depend on next week's market price. Before allocating capital, check what remains available for essential spending and the commitments already due.</p>
+    <div class="mdr-vault-axiom"><span>THE REBEL RULE</span><strong>Essential cash is not risk capital.</strong></div>
+    <ol class="mdr-vault-layers" aria-label="Three layers of financial resilience">
+      <li><b>01 / Commitments</b><span>Reserve the cash already owed.</span></li>
+      <li><b>02 / Liquidity</b><span>Preserve your own months-of-expenses floor.</span></li>
+      <li><b>03 / Choice</b><span>Only then consider the proposed outflow.</span></li>
+    </ol>
+    <details class="mdr-vault-explainer"><summary>What belongs in accessible cash?</summary>
+      <p>Count cash you can actually use for bills without selling an investment or waiting for a withdrawal. Exclude volatile crypto assets, trading collateral, locked staking or yield, properties, unsettled sales and unused credit lines. Deduct bills that are already due or committed. This deliberately conservative definition is for this worksheet, not a judgement of asset quality.</p>
+      <p>Your reserve floor is a <em>personal planning choice</em>, not a recommended number. Income reliability, dependants and spending flexibility can change how much cover you want.</p>
+    </details>
+    <p class="mdr-vault-privacy">Private by design: no accounts, API keys, storage, tracking, broker integration or transmissions of entered amounts. Refresh or leave the focus to erase this worksheet.</p>
+  </div>
+  <div class="mdr-vault-console">
+    <div class="mdr-vault-top"><span>FORTRESS BUFFER CHECK</span><output role="status" aria-live="polite" data-vault-status>NOT ASSESSED</output></div>
+    <p class="mdr-vault-instruction">Choose one currency. Enter amounts without thousand separators; a decimal comma or point is accepted. Every amount remains in the chosen currency.</p>
+    <form data-vault-form autocomplete="off" novalidate>
+      <div class="mdr-vault-fields">
+        <div class="mdr-vault-field mdr-vault-field-narrow"><label for="vault-currency">Currency</label><select id="vault-currency" name="currency" aria-label="Calculation currency"><option value="EUR">EUR (€)</option><option value="USD">USD ($)</option><option value="GBP">GBP (£)</option></select></div>
+        <div class="mdr-vault-field"><label for="vault-cash">Accessible cash <span>available now</span></label><input id="vault-cash" name="cash" type="text" inputmode="decimal" maxlength="14" placeholder="20000,00" required></div>
+        <div class="mdr-vault-field"><label for="vault-essentials">Essential costs <span>per month</span></label><input id="vault-essentials" name="essentials" type="text" inputmode="decimal" maxlength="14" placeholder="2500,00" required></div>
+        <div class="mdr-vault-field"><label for="vault-bills">Committed bills <span>not included above</span></label><input id="vault-bills" name="bills" type="text" inputmode="decimal" maxlength="14" placeholder="0,00" required></div>
+        <div class="mdr-vault-field"><label for="vault-proposal">Proposed outflow <span>from available cash</span></label><input id="vault-proposal" name="proposal" type="text" inputmode="decimal" maxlength="14" placeholder="3000,00" required></div>
+        <div class="mdr-vault-field mdr-vault-field-narrow"><label for="vault-floor">My reserve floor <span>months (1–36)</span></label><input id="vault-floor" name="months" type="text" inputmode="numeric" maxlength="2" placeholder="6" required></div>
+      </div>
+      <p class="mdr-vault-validation" role="status" aria-live="polite" data-vault-detail>Enter all five amounts and your own reserve floor to check the buffer.</p>
+      <div class="mdr-vault-results" data-vault-results hidden>
+        <div class="mdr-vault-primary"><span>RUNWAY AFTER PROPOSED OUTFLOW</span><div><strong data-vault-runway>—</strong><span>months</span></div></div>
+        <div class="mdr-vault-meter" role="progressbar" aria-label="Remaining reserve versus selected floor" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="mdr-vault-bar" data-vault-bar></div></div>
+        <p class="mdr-vault-meter-note">Progress to your selected reserve floor (capped at 100%).</p>
+        <dl class="mdr-vault-figures">
+          <div><dt>Cash left after bills & outflow</dt><dd data-vault-after>—</dd></div>
+          <div><dt>Your selected reserve floor</dt><dd data-vault-target>—</dd></div>
+          <div><dt>Above / below your floor</dt><dd data-vault-delta>—</dd></div>
+        </dl>
+        <p class="mdr-vault-conclusion" data-vault-conclusion></p>
+      </div>
+      <div class="mdr-vault-actions"><button class="mdr-vault-reset" type="button" data-vault-reset>Clear amounts <span aria-hidden="true">↺</span></button><a href="links.html#decision-card" class="mdr-vault-next">Record my decision <span aria-hidden="true">↗</span></a></div>
+    </form>
+    <p class="mdr-vault-footnote">A budgeting stress-check, not permission to invest. No income, returns, inflation, taxes, transfer delays, liquidity freezes or unexpected expenses are forecast. A met floor is not proof of safety.</p>
+  </div>
+</section>
+<noscript><p class="mdr-vault-noscript">Wealth Vault worksheet: available cash − committed bills − proposed outflow = cash remaining. Compare it with your own essential monthly spending × chosen reserve months. JavaScript is required for the calculator; no financial information is submitted.</p></noscript>
   <noscript><p class="mdr-muted">Start with these foundations, then use the complete MDR method below. The interactive focus selector needs JavaScript.</p></noscript>
 </section>
 
@@ -363,5 +411,6 @@
 <script src="assets/js/playbook.js" defer></script>
 <script src="assets/js/mdr-risk-engine.js" defer></script>
 <script src="assets/js/mdr-falsifier.js" defer></script>
+<script src="assets/js/mdr-vault.js" defer></script>
 </body>
 </html>
