@@ -40,8 +40,8 @@
         ['Check the way out.', 'Understand withdrawal conditions, recovery procedures and costs. Keep sensitive recovery information outside this page.']
       ],
       output: 'Leave with: a risk limit, a stop condition and an exit or recovery plan.',
-      href: 'invest.html',
-      link: 'Read the custody and risk context'
+      href: 'links.html?focus=protect#mdr-vault',
+      link: 'Check my liquidity reserve'
     },
     review: {
       label: 'YOUR STARTING POINT / REVIEW',
