@@ -27,8 +27,8 @@
         ['Wait for your conditions.', 'Choose a clear trigger for action or further research. If it is missing, waiting is a complete decision.']
       ],
       output: 'Leave with: a thesis, contrary evidence and a condition for the next step.',
-      href: 'guides.html#discipline',
-      link: 'Use the decision checklist'
+      href: '#mdr-falsifier',
+      link: 'Open the MDR falsification record'
     },
     protect: {
       label: 'YOUR STARTING POINT / PROTECTION',

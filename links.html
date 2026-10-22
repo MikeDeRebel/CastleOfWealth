@@ -8,6 +8,7 @@
 <title>The MDR Playbook | Castle Of Wealth</title>
 <link rel="stylesheet" href="assets/css/style.css">
 <link rel="stylesheet" href="assets/css/playbook.css">
+<link rel="stylesheet" href="assets/css/mdr-falsifier.css">
 <link rel="stylesheet" href="assets/css/mdr-risk-engine.css">
 </head>
 <body class="mdr-page">
@@ -117,6 +118,72 @@
       <p class="mdr-output" data-focus-output>Leave with: a purpose, clear boundaries and one next step.</p>
     </div>
   </div>
+<section class="mdr-falsifier" id="mdr-falsifier" data-mdr-falsifier aria-labelledby="mdr-falsifier-title" hidden>
+  <div class="mdr-falsifier-story">
+    <div class="section-kicker">MDR FIELD RECORD / 003</div>
+    <h3 id="mdr-falsifier-title">Challenge the thesis.<br><em>Before the market does.</em></h3>
+    <p>A good idea can still be wrong. Write down what you knew, when you knew it, and what would prove you wrong. Preserve the first version before checking the outcome.</p>
+    <div class="mdr-falsifier-rule"><span>THE REBEL RULE</span><strong>Evidence against the idea matters more than conviction.</strong></div>
+    <div class="mdr-falsifier-lifecycle" aria-label="Research signal lifecycle: candidate only">
+      <span class="mdr-falsifier-stage">CANDIDATE</span><span aria-hidden="true">→</span><span>VALIDATED</span><span aria-hidden="true">→</span><span>PAPER</span><span aria-hidden="true">→</span><span>PILOT</span><span aria-hidden="true">→</span><span>LIVE</span><span aria-hidden="true">→</span><span>RETIRED</span>
+    </div>
+    <p class="mdr-falsifier-limit">This card creates a <b>research candidate only</b>. It does not run a backtest, verify a source, approve a trade or advance a lifecycle gate.</p>
+    <details class="mdr-falsifier-method">
+      <summary>Why these checks?</summary>
+      <p>Look-ahead bias, survivorship bias and overfitting can make historical strategies look more dependable than they are. Reserve unseen periods, test a negative control and account for costs before trusting a result.</p>
+      <p>Reference: <a href="https://www.cfainstitute.org/insights/professional-learning/refresher-readings/2026/backtesting-and-simulation" target="_blank" rel="noopener noreferrer">CFA Institute</a> · <a href="https://www.quantconnect.com/docs/v2/writing-algorithms/key-concepts/research-guide" target="_blank" rel="noopener noreferrer">QuantConnect Research Guide</a></p>
+    </details>
+  </div>
+  <form class="mdr-falsifier-form" data-mdr-falsifier-form novalidate>
+    <div class="mdr-falsifier-head">
+      <span>PRE-REGISTER A HYPOTHESIS</span>
+      <output data-mdr-falsifier-status role="status" aria-live="polite">CANDIDATE · INCOMPLETE</output>
+    </div>
+    <div class="mdr-falsifier-count" data-mdr-falsifier-count>0 / 7 evidence fields · 0 / 3 checks planned</div>
+    <div class="mdr-falsifier-fields">
+      <div class="mdr-falsifier-field">
+        <label for="mdr-falsifier-market">Market &amp; timeframes <span>01</span></label>
+        <input id="mdr-falsifier-market" name="market" maxlength="90" autocomplete="off" placeholder="e.g. BTC · weekly/4H → 15m/5m" required>
+      </div>
+      <div class="mdr-falsifier-field">
+        <label for="mdr-falsifier-asof">Evidence known as of <span>02 · local time</span></label>
+        <input id="mdr-falsifier-asof" name="asof" type="datetime-local" required>
+      </div>
+      <div class="mdr-falsifier-field mdr-falsifier-wide">
+        <label for="mdr-falsifier-thesis">HTF thesis &amp; key levels <span>03</span></label>
+        <textarea id="mdr-falsifier-thesis" name="thesis" rows="2" maxlength="650" placeholder="Which weekly / daily / 4H observations support this idea? Record the relevant level, not a prediction disguised as evidence." required></textarea>
+      </div>
+      <div class="mdr-falsifier-field mdr-falsifier-wide">
+        <label for="mdr-falsifier-trigger">LTF confirmation rule <span>04</span></label>
+        <textarea id="mdr-falsifier-trigger" name="trigger" rows="2" maxlength="650" placeholder="What observable 15m → 5m structure (BOS, CHoCH, MSS) would qualify for further review?" required></textarea>
+      </div>
+      <div class="mdr-falsifier-field mdr-falsifier-wide">
+        <label for="mdr-falsifier-opposite">Disproof &amp; alternate scenario <span>05</span></label>
+        <textarea id="mdr-falsifier-opposite" name="opposite" rows="2" maxlength="650" placeholder="What would make this thesis wrong? Give a measurable invalidation, opposing structure or contradictory evidence." required></textarea>
+      </div>
+      <div class="mdr-falsifier-field mdr-falsifier-wide">
+        <label for="mdr-falsifier-source">Original evidence URL <span>06 · https</span></label>
+        <input id="mdr-falsifier-source" name="source" type="url" maxlength="700" autocomplete="off" placeholder="https://... (dated chart snapshot or original dataset)" required>
+      </div>
+      <div class="mdr-falsifier-field mdr-falsifier-wide">
+        <label for="mdr-falsifier-test">Independent test plan <span>07</span></label>
+        <textarea id="mdr-falsifier-test" name="test" rows="2" maxlength="650" placeholder="Name your untouched test period, randomized-label falsifier and acceptance threshold. What result means you reject the idea?" required></textarea>
+      </div>
+    </div>
+    <fieldset class="mdr-falsifier-checks">
+      <legend>Define the checks for later independent verification <span>(planning only; not test results)</span></legend>
+      <label><input type="checkbox" name="walkforward"><span>Separate past research from unseen / walk-forward data</span></label>
+      <label><input type="checkbox" name="randomize"><span>Compare with scrambled labels or a randomized baseline</span></label>
+      <label><input type="checkbox" name="friction"><span>Include fees, slippage and adverse-market assumptions</span></label>
+    </fieldset>
+    <p class="mdr-falsifier-error" data-mdr-falsifier-detail aria-live="polite">Complete the evidence and planned checks. No market data is retrieved.</p>
+    <div class="mdr-falsifier-actions">
+      <button type="button" class="button primary" data-mdr-falsifier-export disabled>Export candidate snapshot ↓</button>
+      <button type="button" class="mdr-falsifier-clear" data-mdr-falsifier-clear>Reset</button>
+    </div>
+    <p class="mdr-falsifier-privacy">No account connection, cloud save or automated validation. Your notes remain on this device until you export or share them. Never enter passwords, exchange API keys or recovery phrases. The SHA-256 fingerprint detects changes to the text; it is <strong>not</strong> proof of when the data was observed.</p>
+  </form>
+</section>
   <noscript><p class="mdr-muted">Start with these foundations, then use the complete MDR method below. The interactive focus selector needs JavaScript.</p></noscript>
 </section>
 
@@ -295,5 +362,6 @@
 </script>
 <script src="assets/js/playbook.js" defer></script>
 <script src="assets/js/mdr-risk-engine.js" defer></script>
+<script src="assets/js/mdr-falsifier.js" defer></script>
 </body>
 </html>
